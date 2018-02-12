@@ -2,19 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HeroesComponent } from './heroes/heroes.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpModule, XHRBackend } from '@angular/http';
+// components
+import { AppComponent } from './app.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { MessagesComponent } from './messages/messages.component';
+// services
 import {HeroService} from './services/hero.service';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component'
+import { MessageService } from './services/message.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,11 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component'
     FormsModule,
     HttpClientModule, HttpModule
   ],
-  providers: [HttpClientModule, HeroService],
+  providers: [
+    HttpClientModule, 
+    HeroService, 
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
