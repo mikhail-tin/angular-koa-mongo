@@ -20,14 +20,12 @@ export class HeroesComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    console.log("init going on");
     this.getHeroes();
   }
 
   getHeroes() {
     this.heroService.getHeroes()
       .subscribe(res => {
-        console.log(JSON.stringify(res));
         this.heroes = res.default;
       });
   }
