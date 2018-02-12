@@ -10,9 +10,6 @@ import { HeroService } from '../services/hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  selectedHero: Hero;
-  addingHero = false;
-  error: any;
 
   constructor(
     private router: Router,
@@ -28,10 +25,5 @@ export class HeroesComponent implements OnInit {
       .subscribe(res => {
         this.heroes = res.default;
       });
-  }
-
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
   }
 }

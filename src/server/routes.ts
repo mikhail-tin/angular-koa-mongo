@@ -8,5 +8,5 @@ export default router
   .get('/heroes', list);
 
 async function list(ctx) {
-  ctx.body = heroesList;
+  ctx.body = JSON.stringify(heroesList);
 }

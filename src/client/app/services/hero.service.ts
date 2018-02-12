@@ -18,7 +18,7 @@ export class HeroService {
     return this.http.get(this.heroesUrl).map(res => res.json());
   }
 
-  getHero(_id)/*: Observable<Hero>*/ {
-    return this.getHeroes().map(res => res.find(hero => hero.id == _id));
+  getHero(_id: number)/*: Observable<Hero>*/ {
+    return this.getHeroes().map(res => res.default.find(hero => hero.id == _id));
   }
 };
