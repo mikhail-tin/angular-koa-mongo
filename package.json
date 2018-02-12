@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "build-dev": "tsc -p ./ | npx webpack --config webpack.config.js --env.NODE_ENV=dev",
     "build-dev-server": "tsc -p ./",
-    "build-dev-client": "npx webpack --config webpack.config.js --env.NODE_ENV=dev --display-error-details",
-    "build-prod": "tsc -p ./ || npx webpack --config webpack.config.js --env.NODE_ENV=prod",
-    "build-dev": "tsc -p ./ | npx webpack --config webpack.config.js --env.NODE_ENV=dev"
+    "build-dev-client": "npx webpack --config webpack.config.js --env.NODE_ENV=dev --display-error-details"
   },
   "private": true,
   "dependencies": {
