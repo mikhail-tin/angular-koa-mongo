@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../models/hero';
+import { Hero }        from '../models/hero';
 import { HeroService } from '../services/hero.service';
 
 @Component({
-  selector: 'app-dashboard',
+  moduleId: module.id.toString(),
+  selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css' ]
 })
@@ -12,11 +13,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private heroService: HeroService) { }
 
-  ngOnInit() {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(res => { this.heroes = res});
+  ngOnInit(): void {
+    this.heroService.getHeroes()
+      .then(heroes => this.heroes = heroes.slice(1, 5));
   }
 }

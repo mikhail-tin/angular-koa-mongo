@@ -17,6 +17,7 @@ let heroes: Hero[] = [
 ];
 
 export default router
+  .get('/', getHeroes)
   .get('/api/heroes', getHeroes)
   .get('/api/heroes/:id', getHero)
   .put('/api/heroes', updateHero)
@@ -35,9 +36,10 @@ async function getHero(ctx: Context) {
 }
 
 async function addHero(ctx: Context) {
-  let name = ctx.request.body;
-  let hero: Hero = {id: 6, name: name};
+  let data = ctx.request.body;
+  let hero: Hero = {id: 6, name: data.name};
   heroes.push(hero);
+  ctx.body = JSON.stringify(hero);
 }
 
 async function updateHero(ctx: Context) {

@@ -1,80 +1,59 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, RequestMethod, Response} from '@angular/http'
-import 'rxjs/add/operator/map'
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Injectable }    from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 import { Hero } from '../models/hero';
-import { MessageService } from './message.service';
-import { HttpHeaders } from '@angular/common/http';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable()
 export class HeroService {
 
-  heroesUrl = 'http://localhost:3000/api/heroes';
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private heroesUrl = 'http://localhost:3000/api/heroes';
 
-  constructor(public http: Http, private messageService: MessageService) {}
+  constructor(private http: Http) { }
 
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get(this.heroesUrl).map(res => res.json())
-      .pipe(
-        tap(heroes => this.log(`fetched heroes`)),
-        catchError(this.handleError('getHeroes', []))
-      );
+  getHeroes(): Promise<Hero[]> {
+    return this.http.get(this.heroesUrl)
+               .toPromise()
+               .then(response => response.json() as Hero[])
+               .catch(this.handleError);
   }
 
-  getHero(_id: number): Observable<Hero> {
-    this.messageService.add(`HeroService: fetched hero with id: ${_id}`);
-    return this.http.get(`${this.heroesUrl}/${_id}`).map(res => res.json())
-      .pipe(
-        tap(hero => this.log(`fetched hero`)),
-        catchError(this.handleError('getHeroes', []))
-      );
+
+  getHero(id: number): Promise<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json() as Hero)
+      .catch(this.handleError);
   }
 
-  addHero(name: string): Observable<any> {
-    this.messageService.add(`HeroService: add hero with name: ${name}`);
-    return this.http.post(this.heroesUrl, name).map(res => res.json())
-      .pipe(
-        tap(_ => this.log(`add hero name=${name}`)),
-        catchError(this.handleError<any>('addHero'))
-      );
+  delete(id: number): Promise<void> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
-  updateHero(hero: Hero): Observable<any> {
-    this.messageService.add(`HeroService: updat hero with id: ${hero.id}`);
-    return this.http.put(this.heroesUrl, hero).map(res => res.json())
-      .pipe(
-        tap(_ => this.log(`updated hero id=${hero.id}`)),
-        catchError(this.handleError<any>('updateHero'))
-      );
+  create(name: string): Promise<Hero> {
+    return this.http
+      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json() as Hero)
+      .catch(this.handleError);
   }
 
-  deleteHero(hero: Hero): Observable<any> {
-    this.messageService.add(`HeroService: delet hero with id: ${hero.id}`);
-    let id = hero.id;
-    return this.http.delete(`${this.heroesUrl}/${id}`).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Hero>('deleteHero'))
-    );
+  update(hero: Hero): Promise<Hero> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http
+      .put(url, JSON.stringify(hero), {headers: this.headers})
+      .toPromise()
+      .then(() => hero)
+      .catch(this.handleError);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
-
-  private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
-  }
-};
+}
