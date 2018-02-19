@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NewHeroComponent } from './new-hero/new-hero.component';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { NotFoundComponent } from './not-found/not-found.component'
 // services
 import {HeroService} from './services/hero.service';
 import { MessageService } from './services/message.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NewHeroComponent } from './new-hero/new-hero.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component'
+
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { HeroSearchComponent } from './hero-search/hero-search.component'
     MessagesComponent,
     DashboardComponent,
     NewHeroComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule, HttpModule
+    HttpClientModule, 
+    HttpModule
   ],
   providers: [
     HttpClientModule, 

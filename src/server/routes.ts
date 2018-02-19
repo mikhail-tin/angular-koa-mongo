@@ -1,6 +1,8 @@
 import * as Router from 'koa-router';
-import { Context, } from "koa";
+import { Context, } from 'koa';
+import {HeroServise} from './services/hero.service';
 
+const heroService = new HeroServise();
 const router = new Router();
 
 class Hero {
@@ -27,41 +29,30 @@ export default router
 
 async function getHeroes(ctx: Context) {
   let queryName = ctx.query.name;
-  if(queryName){
-    ctx.body = JSON.stringify(heroes.filter(x => x.name.toLowerCase().includes(queryName.toLowerCase())));
-  } else {
-    ctx.body = JSON.stringify(heroes);
-  }
+  let heroes = await heroService.getHeroes(queryName);
+  ctx.body = JSON.stringify(heroes);
 }
 
 async function getHero(ctx: Context) {
   let id = ctx.params.id;
-  let hero = heroes.find(x=> x.id == id);
+  let hero = await heroService.getHero(id);
   ctx.body = JSON.stringify(hero);
 }
 
-
 async function addHero(ctx: Context) {
   let data = ctx.request.body;
-  let hero: Hero = {id: 6, name: data};
-  heroes.push(hero);
+  let hero = await heroService.addHero(data);
   ctx.body = JSON.stringify(hero);
 }
 
 async function updateHero(ctx: Context) {
   let updatedHero = <Hero>ctx.request.body;
-  heroes = heroes.map(
-    function(x) {
-      if(x.id == updatedHero.id){
-         return updatedHero;
-      }
-      return x;
-    }
-  )
+  let heroes = await heroService.updateHero(updatedHero)
+  ctx.body = JSON.stringify(heroes);
 }
 
-  async function deleteHero(ctx: Context) {
+async function deleteHero(ctx: Context) {
     let id = ctx.params.id;
-    heroes = heroes.filter(x => x.id != id);
+    let heroes = await heroService.deleteHero(id);
     ctx.body = JSON.stringify(heroes);
 }
