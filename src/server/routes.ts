@@ -26,7 +26,12 @@ export default router
   ;
 
 async function getHeroes(ctx: Context) {
-  ctx.body = JSON.stringify(heroes);
+  let queryName = ctx.query.name;
+  if(queryName){
+    ctx.body = JSON.stringify(heroes.filter(x => x.name.toLowerCase().includes(queryName.toLowerCase())));
+  } else {
+    ctx.body = JSON.stringify(heroes);
+  }
 }
 
 async function getHero(ctx: Context) {
@@ -35,9 +40,10 @@ async function getHero(ctx: Context) {
   ctx.body = JSON.stringify(hero);
 }
 
+
 async function addHero(ctx: Context) {
   let data = ctx.request.body;
-  let hero: Hero = {id: 6, name: data.name};
+  let hero: Hero = {id: 6, name: data};
   heroes.push(hero);
   ctx.body = JSON.stringify(hero);
 }
