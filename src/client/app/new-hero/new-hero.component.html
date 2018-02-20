@@ -1,7 +1,5 @@
 <div>
-  <label>name:
-    <input [(ngModel)]="heroName" placeholder="name"/>
-  </label>
+  <label>Hero name:</label> 
+  <input [(ngModel)]="heroName" />
+  <button (click)="add()"> Add </button>
 </div>
-
-<button (click)="add()">Add</button>
