@@ -1,24 +1,12 @@
 import * as Router from 'koa-router';
-import { Context, } from 'koa';
-import {HeroServise} from './services/hero.service';
+import { Context } from 'koa';
+import {HeroServise} from '../services/hero.service';
 
 const heroService = new HeroServise();
-const router = new Router();
 
-class Hero {
-  id: number;
-  name: string;
-}
+const heroRouter = new Router();
 
-let heroes: Hero[] = [
-  {id: 1, name: 'Archy'},
-  {id: 2, name: 'One-Two(Wild Bunch)'},
-  {id: 3, name: 'Handsome Bob(Wild Bunch)'},
-  {id: 4, name: 'Mumbles(Wild Bunch)'},
-  {id: 5, name: 'Johnny'}
-];
-
-export default router
+export default heroRouter
   .get('/', getHeroes)
   .get('/api/heroes', getHeroes)
   .get('/api/heroes/:id', getHero)
@@ -46,7 +34,7 @@ async function addHero(ctx: Context) {
 }
 
 async function updateHero(ctx: Context) {
-  let updatedHero = <Hero>ctx.request.body;
+  let updatedHero = ctx.request.body;
   let heroes = await heroService.updateHero(updatedHero)
   ctx.body = JSON.stringify(heroes);
 }

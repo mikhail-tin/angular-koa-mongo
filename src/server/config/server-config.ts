@@ -8,8 +8,8 @@ class ServerConfig {
     private _localStaticPath: string;
 
   public get localStaticPath(): string {
-        if (!this.localStaticPath) {
-            this._localStaticPath = path.resolve(__dirname, '../dist/dev/client');
+        if (!this._localStaticPath) {
+            this._localStaticPath = path.resolve(__dirname, '../../dev/client');
         }
         return this._localStaticPath;
     }
