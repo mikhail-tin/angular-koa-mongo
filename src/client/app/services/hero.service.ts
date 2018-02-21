@@ -7,17 +7,22 @@ import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import { Hero } from '../models/hero';
 import { MessageService} from './message.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HeroService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'http://localhost:3000/api/heroes';
+  private host: string;
+  private api: string;
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private messageService: MessageService) {
+    this.host = environment.host;
+    this.api = environment.heroesApi;
+   }
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(`${this.host}${this.api}`)
       .map(res => res) // todo remove it? 
       .pipe(
         tap(heroes => this.log(`fetched heroes`)),
@@ -26,7 +31,7 @@ export class HeroService {
   }
 
   getHero(_id: number): Observable<any> {
-    return this.http.get(`${this.heroesUrl}/${_id}`)
+    return this.http.get(`${this.host}${this.api}/${_id}`)
       .map(res => res) // todo remove it? 
       .pipe(
         tap(hero => this.log(`fetched hero`)),
@@ -36,7 +41,7 @@ export class HeroService {
 
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) { return of([]); }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`)
+    return this.http.get<Hero[]>(`${this.host}${this.api}/?name=${term}`)
     .pipe(
       tap(_ => this.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
@@ -44,7 +49,7 @@ export class HeroService {
   }
 
   addHero(name: string): Observable<any> {
-    return this.http.post(this.heroesUrl, name)
+    return this.http.post(`${this.host}${this.api}`, name)
       .map(res => res) // todo remove it? 
       .pipe(
         tap(_ => this.log(`add hero name=${name}`)),
@@ -53,7 +58,7 @@ export class HeroService {
   }
 
   updateHero(hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero)
+    return this.http.put(`${this.host}${this.api}`, hero)
       .map(res => res) // todo remove it? 
       .pipe(
         tap(_ => this.log(`updated hero id=${hero.id}`)),
@@ -63,7 +68,7 @@ export class HeroService {
 
   deleteHero(hero: Hero): Observable<any> {
     let id = hero.id;
-    return this.http.delete(`${this.heroesUrl}/${id}`)
+    return this.http.delete(`${this.host}${this.api}/${id}`)
       .pipe(
         tap(_ => this.log(`deleted hero id=${id}`)),
         catchError(this.handleError<Hero>('deleteHero'))
