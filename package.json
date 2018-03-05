@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon -e ts  --exec \"npm run build-dev\"",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
     "build-dev": "tsc -p ./ | npx webpack --config webpack.config.js --env.NODE_ENV=dev",
     "build-dev-server": "tsc -p ./",
     "build-dev-client": "npx webpack --config webpack.config.js --env.NODE_ENV=dev --display-error-details"
@@ -24,6 +26,7 @@
     "@angular/platform-server": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@angular/upgrade": "^5.2.0",
+    "@koa/cors": "^2.2.1",
     "@types/koa-compose": "^3.2.2",
     "@types/koa-mount": "^3.0.1",
     "@types/koa-route": "^3.2.3",

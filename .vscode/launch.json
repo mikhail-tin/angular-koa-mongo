@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program Dev",
-            "preLaunchTask": "npm: build-dev",
+            "preLaunchTask": "npm: build-dev-server",
             "program": "${workspaceFolder}/dist/server/server.js",
             "sourceMaps": true,
         }

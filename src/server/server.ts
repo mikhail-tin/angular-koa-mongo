@@ -7,9 +7,11 @@ import * as compose from 'koa-compose';
 import config from './config/server-config';
 import heroRouter from "./routes/routes";
 import {commonRoutes, loggingRequest} from "./routes/common";
+const cors = require('@koa/cors');
 
 const app = module.exports = new Koa();
 
+app.use(cors());
 app.use(logger());
 app.use(koaBody());
 app.use(mount('/', serve(config.localStaticPath)));
