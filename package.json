@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "build-dev": "tsc -p ./ | npx webpack --config webpack.config.js --env.NODE_ENV=dev",
-    "build-dev-server": "tsc -p ./",
-    "build-dev-client": "npx webpack --config webpack.config.js --env.NODE_ENV=dev --display-error-details"
+    "start-client-hmr": "ng serve", 
+    "start-server": "node ./dist/server/server.js",
+    "build-dev": "ng build --dev | tsc -p ./",
+    "build-prod": "ng build --prod | tsc -p ./",
+    "build-client-dev": "ng build --dev",
+    "build-client-prod": "ng build --prod",
+    "build-server-dev": "tsc -p ./",
+    "build-server-prod": "tsc -p ./"
   },
   "private": true,
   "dependencies": {
