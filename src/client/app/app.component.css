@@ -1,3 +1,18 @@
 .footer {
     clear: left;
   }
+
+.nav-panel {
+  padding: 10px;
+  text-align: left;
+  background-color: #e4e8ea;
+  border-radius: 5px;
+}  
+
+.nav-link {
+    padding: 6px;
+    text-align: center;
+    color: #eee;
+    background-color: #607D8B;
+    border-radius: 4px;
+}
