@@ -1,4 +1,7 @@
-/* HeroSearch private styles */
+.search-box {
+  clear: both
+}
+
 .search-result li {
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;

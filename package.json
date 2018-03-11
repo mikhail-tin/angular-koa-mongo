@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-client-hmr": "ng serve", 
+    "start-client-hmr": "ng serve",
     "start-server": "node ./dist/server/server.js",
     "build-dev": "ng build --dev | tsc -p ./",
     "build-prod": "ng build --prod | tsc -p ./",
@@ -14,6 +14,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^7.1.1",
     "@angular/animations": "^5.2.4",
     "@angular/cdk": "^5.2.0",
     "@angular/common": "^5.2.0",
@@ -48,6 +49,9 @@
     "koa-session": "^5.0.0",
     "koa-static": "^3.0.0",
     "koa-views": "^6.0.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.18.0",
     "rxjs": "^5.5.6",
     "yargs": "^11.0.0",
     "zone.js": "^0.8.19"

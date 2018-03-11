@@ -5,6 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import {IAppState,INITIAL_STATE} from './store/store' 
+import {rootReducer} from './store/reducer' 
+import { createLogger } from 'redux-logger';
 // components
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -17,7 +22,9 @@ import { NotFoundComponent } from './not-found/not-found.component'
 // services
 import {HeroService} from './services/hero.service';
 import { MessageService } from './services/message.service';
-
+import { HeroActions } from './store/app.actions';
+import { createEpicMiddleware } from 'redux-observable';
+import { HeroEpics } from './services/hero.epic';
 
 @NgModule({
   declarations: [
@@ -36,13 +43,28 @@ import { MessageService } from './services/message.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule, 
-    HttpModule
+    HttpModule,
+    NgReduxModule
   ],
   providers: [
     HttpClientModule, 
     HeroService, 
-    MessageService
+    MessageService,
+    HeroActions,
+    HeroEpics
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(
+    private heroEpics: HeroEpics,
+    private ngRedux: NgRedux<IAppState>) {
+    
+      const middleware = [
+        createEpicMiddleware(this.heroEpics.get),
+        createLogger()
+      ];
+      ngRedux.configureStore(rootReducer, INITIAL_STATE, middleware);
+  }
+}

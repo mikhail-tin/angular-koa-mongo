@@ -21,8 +21,8 @@ export class HeroService {
     this.api = environment.heroesApi;
    }
 
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.host}${this.api}`)
+  getHeroes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.host}${this.api}`)
       .map(res => res) // todo remove it? 
       .pipe(
         tap(heroes => this.log(`fetched heroes`)),
@@ -39,12 +39,12 @@ export class HeroService {
       );
   }
 
-  searchHeroes(term: string): Observable<Hero[]> {
+  searchHeroes(term: string): Observable<any[]> {
     if (!term.trim()) { return of([]); }
-    return this.http.get<Hero[]>(`${this.host}${this.api}/?name=${term}`)
+    return this.http.get<any[]>(`${this.host}${this.api}/?name=${term}`)
     .pipe(
       tap(_ => this.log(`found heroes matching "${term}"`)),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
+      catchError(this.handleError<any[]>('searchHeroes', []))
     );
   }
 
@@ -57,7 +57,7 @@ export class HeroService {
       );
   }
 
-  updateHero(hero: Hero): Observable<any> {
+  updateHero(hero: any): Observable<any> {
     return this.http.put(`${this.host}${this.api}`, hero)
       .map(res => res) // todo remove it? 
       .pipe(
@@ -66,12 +66,12 @@ export class HeroService {
       );
   }
 
-  deleteHero(hero: Hero): Observable<any> {
+  deleteHero(hero: any): Observable<any> {
     let id = hero.id;
     return this.http.delete(`${this.host}${this.api}/${id}`)
       .pipe(
         tap(_ => this.log(`deleted hero id=${id}`)),
-        catchError(this.handleError<Hero>('deleteHero'))
+        catchError(this.handleError<any>('deleteHero'))
       );
   }
 
