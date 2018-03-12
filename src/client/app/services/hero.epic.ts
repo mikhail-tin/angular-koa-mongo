@@ -39,9 +39,9 @@ export class HeroEpics {
   delete = (action$: ActionsObservable<any>) => {
     return action$.ofType(HeroActions.DELETE_HERO)
       .mergeMap(({payload}) => {
-        return this.heroService.addHero(payload.name)
+        return this.heroService.deleteHero(payload)
           .map(result => ({ type: HeroActions.DELETE_HERO_SUCCESS, payload: result }))
-          .catch(error => Observable.of({ type: HeroActions.DELETE_HERO_ERROR }));
+          .catch(error => Observable.of({ type: HeroActions.DELETE_HERO_ERROR, payload: {payload}}));
         });
   }
 }

@@ -60,6 +60,7 @@ export class AppModule {
       const middleware = [
         createEpicMiddleware(this.heroEpics.get),
         createEpicMiddleware(this.heroEpics.add),
+        createEpicMiddleware(this.heroEpics.delete),
         createLogger()
       ];
       ngRedux.configureStore(rootReducer, INITIAL_STATE, middleware);
