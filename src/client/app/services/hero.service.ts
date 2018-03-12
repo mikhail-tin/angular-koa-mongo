@@ -6,7 +6,6 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import { Hero } from '../models/hero';
-import { MessageService} from './message.service';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -16,7 +15,7 @@ export class HeroService {
   private host: string;
   private api: string;
 
-  constructor(private http: HttpClient, private messageService: MessageService) {
+  constructor(private http: HttpClient) {
     this.host = environment.host;
     this.api = environment.heroesApi;
    }
@@ -24,55 +23,37 @@ export class HeroService {
   getHeroes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.host}${this.api}`)
       .map(res => res) // todo remove it? 
-      .pipe(
-        tap(heroes => this.log(`fetched heroes`)),
-        catchError(this.handleError('getHeroes', []))
-      );
+      .pipe(tap(_ => {}), catchError(this.handleError('getHeroes', [])));
   }
 
   getHero(_id: number): Observable<any> {
     return this.http.get(`${this.host}${this.api}/${_id}`)
       .map(res => res) // todo remove it? 
-      .pipe(
-        tap(hero => this.log(`fetched hero`)),
-        catchError(this.handleError('getHeroes', []))
-      );
+      .pipe(tap(_ => {}), catchError(this.handleError('getHeroes', [])));
   }
 
   searchHeroes(term: string): Observable<any[]> {
     if (!term.trim()) { return of([]); }
     return this.http.get<any[]>(`${this.host}${this.api}/?name=${term}`)
-    .pipe(
-      tap(_ => this.log(`found heroes matching "${term}"`)),
-      catchError(this.handleError<any[]>('searchHeroes', []))
-    );
+    .pipe(tap(_ => {}), catchError(this.handleError<any[]>('searchHeroes', [])));
   }
 
   addHero(name: string): Observable<any> {
     return this.http.post(`${this.host}${this.api}`, name)
       .map(res => res) // todo remove it? 
-      .pipe(
-        tap(_ => this.log(`add hero name=${name}`)),
-        catchError(this.handleError<any>('addHero'))
-      );
+      .pipe(tap(_ => {}), catchError(this.handleError<any>('addHero')));
   }
 
   updateHero(hero: any): Observable<any> {
     return this.http.put(`${this.host}${this.api}`, hero)
       .map(res => res) // todo remove it? 
-      .pipe(
-        tap(_ => this.log(`updated hero id=${hero.id}`)),
-        catchError(this.handleError<any>('updateHero'))
-      );
+      .pipe(tap(_ => {}),catchError(this.handleError<any>('updateHero')));
   }
 
   deleteHero(hero: any): Observable<any> {
     let id = hero.id;
     return this.http.delete(`${this.host}${this.api}/${id}`)
-      .pipe(
-        tap(_ => this.log(`deleted hero id=${id}`)),
-        catchError(this.handleError<any>('deleteHero'))
-      );
+      .pipe(tap(_ => {}), catchError(this.handleError<any>('deleteHero')));
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -80,13 +61,9 @@ export class HeroService {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      console.error(`${operation} failed: ${error.message}`);
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
   }
 }

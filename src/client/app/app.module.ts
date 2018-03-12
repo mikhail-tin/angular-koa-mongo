@@ -14,14 +14,12 @@ import { createLogger } from 'redux-logger';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewHeroComponent } from './new-hero/new-hero.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 // services
 import {HeroService} from './services/hero.service';
-import { MessageService } from './services/message.service';
 import { HeroActions } from './store/app.actions';
 import { createEpicMiddleware } from 'redux-observable';
 import { HeroEpics } from './services/hero.epic';
@@ -31,7 +29,6 @@ import { HeroEpics } from './services/hero.epic';
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent,
     DashboardComponent,
     NewHeroComponent,
     HeroSearchComponent,
@@ -49,7 +46,6 @@ import { HeroEpics } from './services/hero.epic';
   providers: [
     HttpClientModule, 
     HeroService, 
-    MessageService,
     HeroActions,
     HeroEpics
   ],

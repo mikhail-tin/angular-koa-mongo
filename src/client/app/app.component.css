@@ -1,5 +1,8 @@
 .footer {
     clear: left;
+    flex: 0 0 auto;
+    padding: 1rem;
+    background: #e4e8ea;
   }
 
 .nav-panel {
