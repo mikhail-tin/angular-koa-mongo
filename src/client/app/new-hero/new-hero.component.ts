@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { HeroService }  from '../services/hero.service';
 import { HeroesComponent } from '../heroes/heroes.component'
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../store/store';
+import { HeroActions } from '../store/app.actions';
 
 @Component({
   selector: 'app-new-hero',
@@ -12,14 +15,17 @@ export class NewHeroComponent implements OnInit {
 
   heroName: string = '';
 
-  constructor(private heroService: HeroService, private heroesComponent: HeroesComponent) { }
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: HeroActions,
+    private heroService: HeroService, 
+    private heroesComponent: HeroesComponent) { }
 
   ngOnInit() {
   }
 
-  add(): void {
-    this.heroService.addHero(this.heroName)
-      .subscribe(res => this.heroesComponent.getHeroes()); //  todo change this
-    this.heroName = '';
+  add(name: string): void {
+    if (!name.trim()) { return; }
+    this.actions.add({id: null, name: name.trim()});
   }
 }

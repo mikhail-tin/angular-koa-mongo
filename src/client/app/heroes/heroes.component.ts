@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import {Hero} from '../models/hero';
 import { HeroService } from '../services/hero.service';
+import { Observable } from 'rxjs/Observable';
+import {NgRedux, select} from '@angular-redux/store';
+import { IAppState} from '../store/store';
+import {HeroActions} from '../store/app.actions'
 
 @Component({
   selector: 'app-heroes',
@@ -10,45 +14,28 @@ import { HeroService } from '../services/hero.service';
 })
 export class HeroesComponent implements OnInit {
   
-  heroes: Hero[];
-  selectedHero: Hero;
+  @select('heroes') heroes$: Observable<any[]>;
+  @select('selectedHero') selectedHero$: Observable<any>;
 
   constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: HeroActions,
     private heroService: HeroService,
     private router: Router) { }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+  
+
+  delete(hero: any): void {
+    this.actions.remove(hero);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero(name)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-        this.selectedHero = null;
-      });
+  ngOnInit(): void {  }
+
+  onSelect(hero: any): void {
+    this.actions.select(hero);
   }
 
-  delete(hero: Hero): void {
-    this.heroService.deleteHero(hero)
-        .subscribe(() => {
-          this.heroes = this.heroes.filter(h => h !== hero);
-          if (this.selectedHero === hero) { this.selectedHero = null; }
-        });
-  }
-
-  ngOnInit(): void {
-    this.getHeroes();
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
-
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+  gotoDetail(hero: any): void {
+    this.router.navigate(['/detail', hero.id]);
   }
 }

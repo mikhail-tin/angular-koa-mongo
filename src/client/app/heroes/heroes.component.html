@@ -4,18 +4,18 @@
 
 <div>
   <ul class="heroes">
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-        [class.selected]="hero === selectedHero">
+    <li *ngFor="let hero of heroes$ | async" (click)="onSelect(hero)"
+        [class.selected]="hero === (selectedHero$ | async)">
       <span class="badge">{{hero.id}}</span>
       <span>{{hero.name}}</span>
-      <button class="delete"
-        (click)="delete(hero); $event.stopPropagation()">x</button>
+      <button class="delete" (click)="delete(hero); $event.stopPropagation()">x</button>
     </li>
   </ul>
-  <div *ngIf="selectedHero">
+
+  <div *ngIf="(selectedHero$ | async) as hero">
     <h2>
-      {{selectedHero.name | uppercase}} is my hero
+      {{hero.name | uppercase}} is my hero
     </h2>
-    <button (click)="gotoDetail()">View Details</button>
+    <button (click)="gotoDetail(hero)">View Details</button>
   </div>
 </div>

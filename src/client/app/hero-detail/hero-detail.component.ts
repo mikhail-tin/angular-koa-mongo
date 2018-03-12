@@ -6,6 +6,11 @@ import { Location }               from '@angular/common';
 import { Hero }        from '../models/hero';
 import { HeroService } from '../services/hero.service';
 
+import {NgRedux, select} from '@angular-redux/store';
+import { IAppState} from '../store/store';
+import {HeroActions} from '../store/app.actions'
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   moduleId: module.id.toString(),
   selector: 'my-hero-detail',
@@ -13,18 +18,21 @@ import { HeroService } from '../services/hero.service';
   styleUrls: [ './hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+  hero: any;
+  id: number;
 
   constructor(
+    private ngRedux: NgRedux<IAppState>,
     private heroService: HeroService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.route.params
-      .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-      .subscribe(hero => this.hero = hero);
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+      this.hero = this.ngRedux.getState().heroes.find(x=> x.id == this.id);
+    });
   }
 
   save(): void {
