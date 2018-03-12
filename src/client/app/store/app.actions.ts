@@ -4,7 +4,7 @@ import {Hero} from '../models/hero';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from './store';
 
-export interface HeroAction extends Action {
+export interface AnyAction extends Action {
   payload: any;
 }
 

@@ -22,13 +22,18 @@ export class HeroEpics {
     return action$.ofType(HeroActions.GET)
       .mergeMap(({payload}) => {
         return this.heroService.getHeroes()
-          .map(result => ({
-            type: HeroActions.GET_SUCCESS,
-            payload: result
-          }))
-          .catch(error => Observable.of({
-            type: HeroActions.GET_ERROR
-          }));
+          .map(result => ({ type: HeroActions.GET_SUCCESS, payload: result }))
+          .catch(error => Observable.of({ type: HeroActions.GET_ERROR }));
         });
   }
+
+  add = (action$: ActionsObservable<any>) => {
+    return action$.ofType(HeroActions.ADD)
+      .mergeMap(({payload}) => {
+        return this.heroService.addHero(payload.name)
+          .map(result => ({ type: HeroActions.ADD_SUCCESS, payload: result }))
+          .catch(error => Observable.of({ type: HeroActions.ADD_ERROR }));
+        });
+  }
+
 }

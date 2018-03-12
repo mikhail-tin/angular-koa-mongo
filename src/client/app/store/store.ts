@@ -1,6 +1,5 @@
-import { Action,AnyAction } from 'redux';
+import { Action } from 'redux';
 import { Hero } from '../models/hero'
-import {HeroAction} from './app.actions'
 
 export interface IAppState {
   pending: boolean,
