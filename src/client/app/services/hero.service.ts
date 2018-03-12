@@ -22,13 +22,11 @@ export class HeroService {
 
   getHeroes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.host}${this.api}`)
-      .map(res => res) // todo remove it? 
       .pipe(tap(_ => {}), catchError(this.handleError('getHeroes', [])));
   }
 
   getHero(_id: number): Observable<any> {
     return this.http.get(`${this.host}${this.api}/${_id}`)
-      .map(res => res) // todo remove it? 
       .pipe(tap(_ => {}), catchError(this.handleError('getHeroes', [])));
   }
 
@@ -40,13 +38,11 @@ export class HeroService {
 
   addHero(name: string): Observable<any> {
     return this.http.post(`${this.host}${this.api}`, name)
-      .map(res => res) // todo remove it? 
       .pipe(tap(_ => {}), catchError(this.handleError<any>('addHero')));
   }
 
   updateHero(hero: any): Observable<any> {
     return this.http.put(`${this.host}${this.api}`, hero)
-      .map(res => res) // todo remove it? 
       .pipe(tap(_ => {}),catchError(this.handleError<any>('updateHero')));
   }
 

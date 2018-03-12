@@ -19,21 +19,29 @@ export class HeroEpics {
     private http: Http) {}
 
   get = (action$: ActionsObservable<any>) => {
-    return action$.ofType(HeroActions.GET)
+    return action$.ofType(HeroActions.GET_HEROES)
       .mergeMap(({payload}) => {
         return this.heroService.getHeroes()
-          .map(result => ({ type: HeroActions.GET_SUCCESS, payload: result }))
-          .catch(error => Observable.of({ type: HeroActions.GET_ERROR }));
+          .map(result => ({ type: HeroActions.GET_HEROES_SUCCESS, payload: result }))
+          .catch(error => Observable.of({ type: HeroActions.GET_HEROES_ERROR }));
         });
   }
 
   add = (action$: ActionsObservable<any>) => {
-    return action$.ofType(HeroActions.ADD)
+    return action$.ofType(HeroActions.ADD_HERO)
       .mergeMap(({payload}) => {
         return this.heroService.addHero(payload.name)
-          .map(result => ({ type: HeroActions.ADD_SUCCESS, payload: result }))
-          .catch(error => Observable.of({ type: HeroActions.ADD_ERROR }));
+          .map(result => ({ type: HeroActions.ADD_HERO_SUCCESS, payload: result }))
+          .catch(error => Observable.of({ type: HeroActions.ADD_HERO_ERROR }));
         });
   }
 
+  delete = (action$: ActionsObservable<any>) => {
+    return action$.ofType(HeroActions.DELETE_HERO)
+      .mergeMap(({payload}) => {
+        return this.heroService.addHero(payload.name)
+          .map(result => ({ type: HeroActions.DELETE_HERO_SUCCESS, payload: result }))
+          .catch(error => Observable.of({ type: HeroActions.DELETE_HERO_ERROR }));
+        });
+  }
 }

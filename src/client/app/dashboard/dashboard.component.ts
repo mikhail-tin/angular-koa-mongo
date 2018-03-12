@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void { 
-    this.actions.get();
+    this.actions.getHeroes();
    }
 
   gotoDetail(id): void {

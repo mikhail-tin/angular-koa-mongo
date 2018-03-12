@@ -13,7 +13,7 @@ export interface IAppState {
 export const INITIAL_STATE: IAppState = {
   pending: false,
   error: null,
-  heroes: [ {id: 0, name: 'Angular'},{id:1, name: 'Redux'}],
+  heroes: [],
   newHero: null,
   selectedHero: null,
   filterHero: ''

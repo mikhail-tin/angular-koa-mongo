@@ -11,43 +11,40 @@ export interface AnyAction extends Action {
 @Injectable()
 export class HeroActions {
 
-  static GET = 'GET';
-  static GET_SUCCESS = 'GET_SUCCESS';
-  static GET_ERROR = 'GET_ERROR';
+  static GET_HEROES = 'GET_HERO';
+  static GET_HEROES_SUCCESS = 'GET_HEROES_SUCCESS';
+  static GET_HEROES_ERROR = 'GET_HEROES_ERROR';
 
-  static ADD = 'ADD';
-  static ADD_SUCCESS = 'ADD_SUCCESS';
-  static ADD_ERROR = 'ADD_ERROR';
+  static GET_HERO = 'GET_HERO';
+  static GET_HERO_SUCCESS = 'GET_HERO_SUCCESS';
+  static GET_HERO_ERROR = 'GET_HERO_ERROR';
 
-  static REMOVE_SUCCESS = 'REMOVE_SUCCESS';
-  static REMOVE = 'REMOVE';
-  static REMOVE_ERROR = 'REMOVE_ERROR';
+  static ADD_HERO = 'ADD_HERO';
+  static ADD_HERO_SUCCESS = 'ADD_HERO_SUCCESS';
+  static ADD_HERO_ERROR = 'ADD_HERO_ERROR';
 
-  static UPDATE = 'UPDATE';
-  static UPDATE_SUCCESS = 'UPDATE_SUCCESS';
-  static UPDATE_ERROR = 'UPDATE_ERROR';
+  static DELETE_HERO = 'REMOVE_HERO';
+  static DELETE_HERO_SUCCESS = 'REMOVE_HERO_SUCCESS';
+  static DELETE_HERO_ERROR = 'REMOVE_HERO_ERROR';
+
+  static UPDATE_HERO = 'UPDATE_HERO';
+  static UPDATE_HERO_SUCCESS = 'UPDATE_HERO_SUCCESS';
+  static UPDATE_HERO_ERROR = 'UPDATE_HERO_ERROR';
   
-  static SELECT = 'SELECT';
+  static SELECT_HERO = 'SELECT_HERO';
 
   constructor(private ngRedux: NgRedux<IAppState>) {}
 
-  get(): void {
-    this.ngRedux.dispatch({type: HeroActions.GET});
-  }
+  getHeroes = () => this.ngRedux.dispatch({type: HeroActions.GET_HEROES});
 
-  add(hero: Hero): void {
-    this.ngRedux.dispatch({type: HeroActions.ADD, payload: hero });
-  }
+  getHero = (hero: Hero) => this.ngRedux.dispatch({type: HeroActions.GET_HERO});
 
-  remove(hero: Hero): void {
-    this.ngRedux.dispatch({ type: HeroActions.REMOVE, payload: hero });
-  }
+  addHero = (hero: Hero) => this.ngRedux.dispatch({type: HeroActions.ADD_HERO, payload: hero });
 
-  update(hero: Hero): void {
-    this.ngRedux.dispatch({ type: HeroActions.UPDATE, payload: hero });
-  }
+  deleteHero = (hero: Hero) => this.ngRedux.dispatch({ type: HeroActions.DELETE_HERO, payload: hero });
 
-  select(hero: Hero): void {
-    this.ngRedux.dispatch({ type: HeroActions.SELECT, payload: hero });
-  }
+  updateHero = (hero: Hero) =>  this.ngRedux.dispatch({ type: HeroActions.UPDATE_HERO, payload: hero });
+
+  select = (hero: Hero) =>  this.ngRedux.dispatch({ type: HeroActions.SELECT_HERO, payload: hero });
+  
 }

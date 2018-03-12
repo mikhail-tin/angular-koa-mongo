@@ -26,7 +26,7 @@ export class HeroesComponent implements OnInit {
   
 
   delete(hero: any): void {
-    this.actions.remove(hero);
+    this.actions.deleteHero(hero);
   }
 
   ngOnInit(): void {  }
