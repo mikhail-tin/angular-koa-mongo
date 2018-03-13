@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero }        from '../models/hero';
-import { HeroService } from '../services/hero.service';
-
+import { Hero } from '../models/hero';
 import { Observable } from 'rxjs/Observable';
-
 import { NgRedux, select} from '@angular-redux/store';
 import { IAppState} from '../store/store';
 import { Router } from '@angular/router';
@@ -22,7 +19,6 @@ export class DashboardComponent implements OnInit {
   constructor(
     private actions: HeroActions,
     private ngRedux: NgRedux<IAppState>,
-    private heroService: HeroService,
     private router: Router) { }
 
   ngOnInit(): void { 

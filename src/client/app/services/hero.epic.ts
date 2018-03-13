@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActionsObservable } from 'redux-observable';
 import { HeroActions } from '../store/app.actions';
 import { Observable } from 'rxjs/Observable';
@@ -14,9 +13,7 @@ const BASE_URL = '/api';
 @Injectable()
 export class HeroEpics {
 
-  constructor(
-    private heroService: HeroService,
-    private http: Http) {}
+  constructor(private heroService: HeroService) {}
 
   getHero = (action$: ActionsObservable<any>) => {
     return action$.ofType(HeroActions.GET_HEROES)
@@ -53,5 +50,5 @@ export class HeroEpics {
           .catch(error => Observable.of({ type: HeroActions.UPDATE_HERO_ERROR, payload: {payload}}));
         });
   }
-  
+
 }

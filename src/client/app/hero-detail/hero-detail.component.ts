@@ -1,14 +1,11 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location }               from '@angular/common';
-
-import { Hero }        from '../models/hero';
-import { HeroService } from '../services/hero.service';
-
-import {NgRedux, select} from '@angular-redux/store';
+import { Location }  from '@angular/common';
+import { Hero } from '../models/hero';
+import { NgRedux, select} from '@angular-redux/store';
 import { IAppState} from '../store/store';
-import {HeroActions} from '../store/app.actions'
+import { HeroActions} from '../store/app.actions'
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -23,7 +20,7 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
-    private heroService: HeroService,
+    private actions: HeroActions,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -36,11 +33,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService.updateHero(this.hero)
-      .subscribe(() => this.goBack());
-  }
-
-  goBack(): void {
+    this.actions.updateHero(this.hero);
     this.location.back();
   }
 }
