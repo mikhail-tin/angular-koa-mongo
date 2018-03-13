@@ -4,9 +4,10 @@ import { Hero } from '../models/hero'
 export interface IAppState {
   pending: boolean,
   error: any,
-  heroes: any[];
-  newHero: any,
-  selectedHero: any,
+  heroes: Hero[];
+  newHero: Hero,
+  selectedHero: Hero,
+  hero: Hero
   filterHero: string
 }
 
@@ -16,5 +17,6 @@ export const INITIAL_STATE: IAppState = {
   heroes: [],
   newHero: null,
   selectedHero: null,
+  hero: null,
   filterHero: ''
 };

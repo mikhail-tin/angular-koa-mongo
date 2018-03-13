@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
 // services
 import {HeroService} from './services/hero.service';
 import { HeroActions } from './store/app.actions';
-import { createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { HeroEpics } from './services/hero.epic';
 
 @NgModule({
@@ -58,9 +58,10 @@ export class AppModule {
     private ngRedux: NgRedux<IAppState>) {
     
       const middleware = [
-        createEpicMiddleware(this.heroEpics.get),
-        createEpicMiddleware(this.heroEpics.add),
-        createEpicMiddleware(this.heroEpics.delete),
+        createEpicMiddleware(this.heroEpics.getHero),
+        createEpicMiddleware(this.heroEpics.addHero),
+        createEpicMiddleware(this.heroEpics.deleteHero),
+        createEpicMiddleware(this.heroEpics.updateHero),
         createLogger()
       ];
       ngRedux.configureStore(rootReducer, INITIAL_STATE, middleware);

@@ -1,8 +1,8 @@
 import { Action } from 'redux';
 import { Hero } from '../models/hero';
-import {AnyAction} from './app.actions';
+import { AnyAction } from './app.actions';
 import { IAppState } from './store';
-import {HeroActions} from './app.actions';
+import { HeroActions } from './app.actions';
 
 
 export function rootReducer(lastState: IAppState, action: AnyAction): IAppState {
@@ -35,7 +35,12 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
     case HeroActions.UPDATE_HERO: 
       return Object.assign({},lastState, 
         {heroes: lastState.heroes.map(x => {if(x.id == action.payload.id) return action.payload; else  return x;})});
-    
+    case HeroActions.UPDATE_HERO_SUCCESS: 
+        return Object.assign({},lastState, 
+          {heroes: lastState.heroes.map(x => {if(x.id == action.payload.id) return action.payload; else  return x;})});
+    case HeroActions.UPDATE_HERO_ERROR: 
+        return Object.assign({},lastState, {heroes: [...heroes, action.payload]}, {error: "Hero was not updated"});
+
     case HeroActions.SELECT_HERO: 
       return Object.assign({}, lastState, { selectedHero: action.payload });
 
