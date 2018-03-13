@@ -18,7 +18,7 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
     case HeroActions.ADD_HERO:
       return Object.assign({}, lastState, {heroes: [...lastState.heroes, {id: null, name: action.payload.name}]});
     case HeroActions.ADD_HERO_SUCCESS:
-      let heroes = lastState.heroes.filter(x=> !!x.id);
+      let heroes = lastState.heroes.filter(x=> x.id != null);
       return Object.assign({}, lastState, {heroes: [...heroes, action.payload]});
     case HeroActions.ADD_HERO_ERROR:
       return Object.assign({}, lastState, {error: "Hero was not added"});
