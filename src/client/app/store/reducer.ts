@@ -45,7 +45,8 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
     case HeroActions.DELETE_HERO: 
       return Object.assign({},
         lastState, 
-        {heroes: lastState.heroes.filter(x => x.id != action.payload.id)}
+        {heroes: lastState.heroes.filter(x => x.id != action.payload.id)},
+        {selectedHero: lastState.selectedHero.id == action.payload.id? null: lastState.selectedHero}
       );
     case HeroActions.DELETE_HERO_SUCCESS: 
       return Object.assign({},
