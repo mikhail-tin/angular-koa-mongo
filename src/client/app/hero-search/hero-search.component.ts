@@ -10,6 +10,9 @@ import {
 
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
+import { NgRedux } from '@angular-redux/store';
+import { HeroActions } from '../store/app.actions';
+import { IAppState } from '../store/store';
 
 @Component({
   selector: 'app-hero-search',
@@ -22,7 +25,10 @@ export class HeroSearchComponent implements OnInit {
   
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: HeroActions,
+    private heroService: HeroService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -36,5 +42,9 @@ export class HeroSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.heroService.searchHeroes(term)),
     );
+  }
+
+  onSelect(hero: Hero){
+    this.actions.select(hero);
   }
 }
