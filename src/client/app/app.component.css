@@ -1,14 +1,30 @@
+.main {
+  width: 900px;
+  min-height: 650px;
+  margin: 0 auto;
+}
+
+.header-image{
+  width: 20%;
+  height: 20%;
+  margin: 0 auto;
+  float: left;
+}
+
 .footer {
-    clear: left;
-    flex: 0 0 auto;
-    padding: 1rem;
-    background: #e4e8ea;
-  }
+  width: 900px;
+  clear: both;
+  bottom: 0;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #e6ebee;
+  text-align: center;
+}
 
 .nav-panel {
   padding: 10px;
   text-align: left;
-  background-color: #e4e8ea;
+  background-color:  #e6ebee;
   border-radius: 5px;
 }  
 
@@ -16,6 +32,6 @@
     padding: 6px;
     text-align: center;
     color: #eee;
-    background-color: #607D8B;
+    background-color: rgb(34, 48, 54);
     border-radius: 4px;
 }
