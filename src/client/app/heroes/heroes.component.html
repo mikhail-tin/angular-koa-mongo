@@ -1,5 +1,7 @@
 <h2>My Heroes</h2>
 
+
+
 <app-new-hero></app-new-hero>
 
 <div>
@@ -12,10 +14,11 @@
     </li>
   </ul>
 
-  <div *ngIf="(selectedHero$ | async) as hero">
-    <h2>
-      {{hero.name | uppercase}} is my hero
-    </h2>
+  <app-info-widget></app-info-widget>
+
+  <div *ngIf="(selectedHero$ | async) as hero" class="info-widget">
+    <h4>{{hero.name | uppercase}}</h4>
     <button (click)="gotoDetail(hero)">View Details</button>
   </div>
+
 </div>

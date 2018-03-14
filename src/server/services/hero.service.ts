@@ -32,7 +32,7 @@ export class HeroServise {
 
     public async updateHero(hero: Hero) {
         heroes = heroes.map( (x) => { if(x.id == hero.id){ return hero; }  return x;} )
-        return heroes;
+        return hero;
     }
 
     public async deleteHero(id: number) {

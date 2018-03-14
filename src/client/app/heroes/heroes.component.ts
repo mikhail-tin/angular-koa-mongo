@@ -21,7 +21,9 @@ export class HeroesComponent implements OnInit {
     private actions: HeroActions,
     private router: Router) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    this.actions.getHeroes();
+   }
 
   onSelect(hero: any): void {
     this.actions.select(hero);

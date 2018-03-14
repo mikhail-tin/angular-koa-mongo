@@ -23,5 +23,6 @@ export class NewHeroComponent implements OnInit {
   add(name: string): void {
     if (!name.trim()) { return; }
     this.actions.addHero({id: null, name: name.trim()});
+    this.heroName = "";
   }
 }

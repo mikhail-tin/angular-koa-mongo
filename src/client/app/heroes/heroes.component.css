@@ -64,3 +64,14 @@ button.delete {
   background-color: gray !important;
   color:white;
 }
+
+.info-widget {
+  width: 250px;
+  height: 80px;
+  flex: 10;
+  padding: 1rem;
+  background: #f2f2f2;
+  float: left;
+  border-radius: 5px;
+  margin: 10px;
+}

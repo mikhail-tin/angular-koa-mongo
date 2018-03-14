@@ -23,6 +23,7 @@ import {HeroService} from './services/hero.service';
 import { HeroActions } from './store/app.actions';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { HeroEpics } from './services/hero.epic';
+import { InfoWidgetComponent } from './info-widget/info-widget.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HeroEpics } from './services/hero.epic';
     DashboardComponent,
     NewHeroComponent,
     HeroSearchComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    InfoWidgetComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ export class AppModule {
         createEpicMiddleware(this.heroEpics.addHero),
         createEpicMiddleware(this.heroEpics.deleteHero),
         createEpicMiddleware(this.heroEpics.updateHero),
-        createLogger()
+        // createLogger()
       ];
       ngRedux.configureStore(rootReducer, INITIAL_STATE, middleware);
   }
