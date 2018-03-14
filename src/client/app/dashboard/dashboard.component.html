@@ -1,4 +1,4 @@
-<h3>Top Heroes</h3>
+<h2>Top Heroes</h2>
 <div class="grid grid-pad">
   <a *ngFor="let hero of (heroes$ | async)?.slice(0,5)"  [routerLink]="['/detail', hero.id]"  class="col-1-5">
     <div class="module hero">

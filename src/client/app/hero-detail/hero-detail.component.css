@@ -1,3 +1,7 @@
+.hero-detail{
+  padding: 50px;
+}
+
 label {
   display: inline-block;
   width: 3em;
