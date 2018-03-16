@@ -2,23 +2,27 @@ import { argv } from 'yargs';
 import * as path from 'path';
 
 class ServerConfig {
-    private _mangoConnetion: string;
+    private _mangoConnetionUri: string;
     private _port: number;
     private _buildType: string;
     private _localStaticPath: string;
 
-  public get localStaticPath(): string {
+    public get localStaticPath(): string {
         if (!this._localStaticPath) {
             this._localStaticPath = path.resolve(__dirname, '../../client');
         }
         return this._localStaticPath;
     }
 
-    public get mangoConnetion(): string {
-        if (!this._mangoConnetion) {
-            this._mangoConnetion = argv['mongo_connection'] || process.env.MONGO_CONNECTION || 'mongodb://localhost/mongotest';
+    public get mangoConnetionUri(): string {
+        if (!this._mangoConnetionUri) {
+            this._mangoConnetionUri = argv['mongo_connection'] || process.env.MONGO_CONNECTION || 'mongodb://localhost/mongotest';
         }
-        return this._mangoConnetion;
+        return this._mangoConnetionUri;
+    }
+
+    public get mangoConnetionOptions(): {} {
+        return {};
     }
 
     public get port(): number {
@@ -38,4 +42,4 @@ class ServerConfig {
 
 const config: ServerConfig = new ServerConfig();
 
-export default config;
+export default config ;

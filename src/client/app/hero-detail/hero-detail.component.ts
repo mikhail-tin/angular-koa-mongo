@@ -16,7 +16,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeroDetailComponent implements OnInit {
   hero: any;
-  id: number;
+  id: string;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -27,8 +27,8 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
-      this.hero = this.ngRedux.getState().heroes.find(x=> x.id == this.id);
+      this.id = params['id'];
+      this.hero = this.ngRedux.getState().heroes.find(x=> x._id === this.id);
     });
   }
 

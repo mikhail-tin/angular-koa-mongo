@@ -31,7 +31,7 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
         {heroes: [...lastState.heroes, {id: null, name: action.payload.name}]}
       );
     case HeroActions.ADD_HERO_SUCCESS:
-      let heroes = lastState.heroes.filter(x=> x.id != null);
+      let heroes = lastState.heroes.filter(x=> x._id != null);
       return Object.assign({}, 
         lastState, 
         {heroes: [...heroes, action.payload]}
@@ -45,13 +45,13 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
     case HeroActions.DELETE_HERO: 
       return Object.assign({},
         lastState, 
-        {heroes: lastState.heroes.filter(x => x.id != action.payload.id)},
-        {selectedHero: lastState.selectedHero.id == action.payload.id? null: lastState.selectedHero}
+        {heroes: lastState.heroes.filter(x => x._id != action.payload._id)},
+        {selectedHero: lastState.selectedHero._id == action.payload._id? null: lastState.selectedHero}
       );
     case HeroActions.DELETE_HERO_SUCCESS: 
       return Object.assign({},
         lastState, 
-        {heroes: lastState.heroes.filter(x => x.id != action.payload.id)}
+        {heroes: lastState.heroes.filter(x => x._id != action.payload._id)}
       );
     case HeroActions.DELETE_HERO_ERROR: 
       return Object.assign({},
@@ -64,12 +64,12 @@ export function rootReducer(lastState: IAppState, action: AnyAction): IAppState 
     case HeroActions.UPDATE_HERO: 
       return Object.assign({},
           lastState, 
-          {heroes: lastState.heroes.map(x => {if(x.id == action.payload.id) return action.payload; else  return x;})},
+          {heroes: lastState.heroes.map(x => {if(x._id == action.payload._id) return action.payload; else  return x;})},
           {selectedHero: null}
         );
     case HeroActions.UPDATE_HERO_SUCCESS: 
         return Object.assign({},lastState, 
-          {heroes: lastState.heroes.map(x => {if(x.id == action.payload.id) return action.payload; else  return x;})}, 
+          {heroes: lastState.heroes.map(x => {if(x._id == action.payload._id) return action.payload; else  return x;})}, 
           {selectedHero: null}
         );
     case HeroActions.UPDATE_HERO_ERROR: 

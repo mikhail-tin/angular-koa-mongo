@@ -1,42 +1,36 @@
+import { MongoClient } from "mongodb";
+import HeroSchema from '../models/hero';
 
-class Hero {
-    id: number;
-    name: string;
+interface Hero{
+    _id: string
+    name: string
 }
 
-let heroes: Hero[] = [
-        {id: 0, name: 'Archy'},
-        {id: 1, name: 'One-Two(Wild Bunch)'},
-        {id: 2, name: 'Handsome Bob(Wild Bunch)'},
-        {id: 3, name: 'Mumbles(Wild Bunch)'},
-        {id: 4, name: 'Johnny'}
-    ];
-
 export class HeroServise {
-
-    public async getHeroes(name?: string) {
-        if(name) { return heroes.filter(x => x.name.toLowerCase().includes(name.toLowerCase()));}
-        return heroes; 
+ 
+    public async getHeroes() {
+        var results = await HeroSchema.find();
+        return results;
     }
 
     public async getHero(id: number) {
-        return heroes.find(x=> x.id == id);
+        var results = await HeroSchema.findById(id);
+        return results;
     }
 
     public async addHero(name: string) {
-        let nextId = heroes.length;
-        let hero: Hero = {id: nextId, name: name};
-        heroes.push(hero);
-        return hero;
+        let hero = new HeroSchema({name: "MyHero"});
+        let result = await hero.save();
+        return result;
     }
 
     public async updateHero(hero: Hero) {
-        heroes = heroes.map( (x) => { if(x.id == hero.id){ return hero; }  return x;} )
-        return hero;
+        var results = await HeroSchema.findByIdAndUpdate(hero._id, hero);
+        return results;
     }
 
-    public async deleteHero(id: number) {
-        heroes = heroes.filter(x => x.id != id);
-        return heroes;
+    public async deleteHero(id: string) {
+        var results = await HeroSchema.findByIdAndRemove(id);
+        return results;
     }
 };

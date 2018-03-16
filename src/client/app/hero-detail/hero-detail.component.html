@@ -1,7 +1,7 @@
 <div *ngIf="hero" class="hero-detail">
   <h2>{{hero.name}} details!</h2>
   <div>
-    <label>id: </label>{{hero.id}}</div>
+    <label>id: </label>{{(hero._id).substring(0,7)+"..."}}</div>
   <div>
     <label>name: </label>
     <input [(ngModel)]="hero.name" placeholder="name" />

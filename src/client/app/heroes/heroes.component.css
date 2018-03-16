@@ -33,10 +33,10 @@
 }
 .heroes .badge {
   display: inline-block;
+  width: 4ch;
   font-size: small;
-  color: white;
+  color:#BBD8DC;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
   line-height: 1em;
   position: relative;
   left: -1px;
@@ -44,6 +44,11 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+  background: -moz-linear-gradient(left, #607D8B, #BBD8DC 100%);
+  background: -webkit-linear-gradient(left, #607D8B,#BBD8DC 100%);
+  background: -o-linear-gradient(left, #607D8B, #BBD8DC 100%);
+  background: -ms-linear-gradient(left, #607D8B,#BBD8DC 100%);
+  background: linear-gradient(to right, #607D8B, #BBD8DC 100%);
 }
 button {
   font-family: Arial;

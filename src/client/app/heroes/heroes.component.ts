@@ -13,8 +13,8 @@ import { HeroActions } from '../store/app.actions'
 })
 export class HeroesComponent implements OnInit {
   
-  @select('heroes') heroes$: Observable<any[]>;
-  @select('selectedHero') selectedHero$: Observable<any>;
+  @select('heroes') heroes$: Observable<Hero[]>;
+  @select('selectedHero') selectedHero$: Observable<Hero>;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -34,6 +34,6 @@ export class HeroesComponent implements OnInit {
   }
 
   gotoDetail(hero: any): void {
-    this.router.navigate(['/detail', hero.id]);
+    this.router.navigate(['/detail', hero._id]);
   }
 }
