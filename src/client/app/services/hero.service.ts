@@ -37,8 +37,8 @@ export class HeroService {
   }
 
   addHero(name: string): Observable<any> {
-    return this.http.post(`${this.host}${this.api}`, name)
-      .pipe(tap(_ => {}), catchError(this.handleError<any>('addHero')));
+    return this.http.post(`${this.host}${this.api}`, name);
+      //.pipe(tap(_ => {}), catchError(this.handleError<any>('addHero')));
   }
 
   updateHero(hero: any): Observable<any> {

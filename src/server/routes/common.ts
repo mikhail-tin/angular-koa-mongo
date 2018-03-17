@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
 import { Context } from 'koa';
-import {readFileThunk} from './helpers';
+import {readFileThunk} from '../utils/helpers';
 import config from '../config/server-config';
 
 const commonRoutes = new Router()

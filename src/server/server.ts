@@ -7,12 +7,9 @@ import * as compose from 'koa-compose';
 import config from './config/server-config';
 import heroRouter from "./routes/routes";
 import {commonRoutes, loggingRequest} from "./routes/common";
-import defineDb from './database/db'
 const cors = require('@koa/cors');
 
 const app = module.exports = new Koa();
-
-let db = defineDb().then(()=>console.log('mongo started')).catch(err=>console.log(err));
 
 app.use(cors());
 app.use(logger());

@@ -6,8 +6,8 @@
   <ul class="heroes">
     <li *ngFor="let hero of heroes$ | async" (click)="onSelect(hero)"
         [class.selected]="hero === (selectedHero$ | async)">
-      <span class="badge">{{hero._id.substring(0,5)}}</span>
-      <span>{{hero.name}}</span>
+      <span class="badge">{{hero?._id?.substring(0,5)}}</span>
+      <span>{{hero?.name}}</span>
       <button class="delete" (click)="delete(hero); $event.stopPropagation()">x</button>
     </li>
   </ul>
