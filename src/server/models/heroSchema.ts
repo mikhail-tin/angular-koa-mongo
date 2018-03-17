@@ -6,6 +6,6 @@ const HeroSchema = new Schema({
     name: {type: String, required: true, unique: true },
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
-}, { emitIndexErrors: true });
+});
 
 export default DataAccess.mongooseConnection.model('Hero', HeroSchema);

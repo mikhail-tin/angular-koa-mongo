@@ -11,8 +11,8 @@ async function getIndex(ctx: Context) {
   ctx.body = await readFileThunk(config.localStaticPath + '/index.html');
 }
 
-async function loggingRequest(ctx, next) {
-  console.log('Url:', ctx.url);
+async function loggingRequest(ctx: Context, next) {
+  console.log(`Url: ${ctx.url}`);
   await next();
 }
 

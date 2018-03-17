@@ -9,34 +9,22 @@ interface Hero{
 export class HeroServise {
  
     public async getHeroes() {
-        var results = await Hero.find();
-        return results;
+        return await Hero.find();
     }
 
     public async getHero(id: number) {
-        var results = await Hero.findById(id);
-        return results;
+        return await Hero.findById(id);
     }
 
     public async addHero(name: string) {
-        let hero = new Hero({name: name});
-        let result;
-        try{
-            result = await hero.save();
-        } catch (err) {
-            throw new Error(err);
-        }
-
-        return result;
+        return await new Hero({name: name}).save();
     }
 
     public async updateHero(hero: Hero) {
-        var results = await Hero.findByIdAndUpdate(hero._id, hero);
-        return results;
+        return await Hero.findByIdAndUpdate(hero._id, hero);
     }
 
     public async deleteHero(id: string) {
-        var results = await Hero.findByIdAndRemove(id);
-        return results;
+        return await Hero.findByIdAndRemove(id);
     }
 };
