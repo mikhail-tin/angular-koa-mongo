@@ -1,30 +1,35 @@
-# Tour of heroes/ Koa Anglar Mongo.
+# Tour of heroes/ Koa Anglar Mongo
 
-## Stack:
+## this project not done yet
+
+## Stack
+
 * Front end(TypeScript): Angular 5 + Redux
 * Back end(TypeScript): Koa2 + MongoDB(Mongoose)
 
 ## Prerequisites
+
 * NodeJs
 * MongoDB (Make sure that port is 27017)
 
-
-```
-----------------------------
-this project not done yet...
-----------------------------
-```
 ### Run mongoDB
-#### Windows:
-``` 
-Open cmd and run mongod.exe 
+
+#### Windows
+
+Create the following folder: C:\data\db
+
+```cmd
+> cd C:\Program Files\MongoDB\Server\3.6\bin
+> mongod.exe
 ```
-#### Fedora Linux:
-```Start mongoDB service and after run mongoshell to test connection```
+
+#### Fedora Linux
+
+```bash
+ sudo service mongod start
+ mongo
 ```
-$ sudo service mongod start
-$ mongo
-``` 
 
 ## License
+
 MIT
