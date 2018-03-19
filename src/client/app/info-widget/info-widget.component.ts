@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select, NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IHeroState } from '../store/model';
 
 @Component({
   selector: 'app-info-widget',
@@ -12,9 +12,9 @@ export class InfoWidgetComponent implements OnInit {
 
   private heroes$: Observable<any[]>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<IHeroState>) { }
 
   ngOnInit() {
-    this.heroes$ = this.ngRedux.select('heroes');
+    this.heroes$ = this.ngRedux.select(['heroesState', 'heroes']);
   }
 }

@@ -8,7 +8,12 @@ interface Hero{
 
 export class HeroServise {
  
-    public async getHeroes() {
+    public async getHeroes(name?: string) {
+        if(name){
+            let regex = `${name}+`;
+            let result = await Hero.find({name: new RegExp(regex, "g")});
+            return result;
+        }
         return await Hero.find();
     }
 

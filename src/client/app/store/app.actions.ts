@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action } from 'redux';
 import {Hero} from '../models/hero';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from './store';
+import { IHeroState } from './model';
 
 export interface AnyAction extends Action {
   payload: any;
@@ -33,7 +33,7 @@ export class HeroActions {
   
   static SELECT_HERO = 'SELECT_HERO';
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  constructor(private ngRedux: NgRedux<IHeroState>) {}
 
   getHeroes = () => this.ngRedux.dispatch({type: HeroActions.GET_HEROES});
 

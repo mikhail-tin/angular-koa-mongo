@@ -14,7 +14,7 @@ export default new Router()
 ;
 
 async function getHeroes(ctx: Context) {
-  ctx.body = JSON.stringify(await heroService.getHeroes());
+  ctx.body = JSON.stringify(await heroService.getHeroes(ctx.request.query.name));
 }
 
 async function getHero(ctx: Context) {

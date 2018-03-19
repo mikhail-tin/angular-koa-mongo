@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {Hero} from '../models/hero';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux, select} from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IHeroState } from '../store/model';
 import { HeroActions } from '../store/app.actions'
 
 @Component({
@@ -13,11 +13,11 @@ import { HeroActions } from '../store/app.actions'
 })
 export class HeroesComponent implements OnInit {
   
-  @select('heroes') heroes$: Observable<Hero[]>;
-  @select('selectedHero') selectedHero$: Observable<Hero>;
+  @select(['heroesState', 'heroes']) heroes$: Observable<Hero[]>;
+  @select(['heroesState', 'selectedHero']) selectedHero$: Observable<Hero>;
 
   constructor(
-    private ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<IHeroState>,
     private actions: HeroActions,
     private router: Router) { }
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { Observable } from 'rxjs/Observable';
-import { NgRedux, select} from '@angular-redux/store';
-import { IAppState} from '../store/store';
+import { NgRedux, select, WithSubStore, PathSelector} from '@angular-redux/store';
+import { IHeroState} from '../store/model';
 import { Router } from '@angular/router';
 import { HeroActions } from '../store/app.actions';
+import { heroReducer } from '../store/heroReducer';
 
 @Component({
   moduleId: module.id.toString(),
@@ -14,11 +15,11 @@ import { HeroActions } from '../store/app.actions';
 })
 export class DashboardComponent implements OnInit {
 
-  @select('heroes') heroes$: Observable<any[]>;
+  @select(['heroesState', 'heroes']) heroes$: Observable<any[]>;
 
   constructor(
     private actions: HeroActions,
-    private ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<IHeroState>,
     private router: Router) { }
 
   ngOnInit(): void { 

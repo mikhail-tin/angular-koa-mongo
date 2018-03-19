@@ -7,8 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
-import {IAppState,INITIAL_STATE} from './store/store' 
-import {rootReducer} from './store/reducer' 
+import { StoreModule } from './store/module';
 import { createLogger } from 'redux-logger';
 // components
 import { AppComponent } from './app.component';
@@ -43,7 +42,8 @@ import { InfoWidgetComponent } from './info-widget/info-widget.component';
     FormsModule,
     HttpClientModule, 
     HttpModule,
-    NgReduxModule
+    NgReduxModule,
+    StoreModule,
   ],
   providers: [
     HttpClientModule, 
@@ -53,19 +53,4 @@ import { InfoWidgetComponent } from './info-widget/info-widget.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-
-  constructor(
-    private heroEpics: HeroEpics,
-    private ngRedux: NgRedux<IAppState>) {
-    
-      const middleware = [
-        createEpicMiddleware(this.heroEpics.getHero),
-        createEpicMiddleware(this.heroEpics.addHero),
-        createEpicMiddleware(this.heroEpics.deleteHero),
-        createEpicMiddleware(this.heroEpics.updateHero),
-        // createLogger()
-      ];
-      ngRedux.configureStore(rootReducer, INITIAL_STATE, middleware);
-  }
-}
+export class AppModule {}

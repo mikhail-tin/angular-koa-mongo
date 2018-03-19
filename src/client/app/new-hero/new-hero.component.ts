@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
+import { IHeroState } from '../store/model';
 import { HeroActions } from '../store/app.actions';
 
 @Component({
@@ -14,7 +14,7 @@ export class NewHeroComponent implements OnInit {
   heroName: string = '';
 
   constructor(
-    private ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<IHeroState>,
     private actions: HeroActions) { }
 
   ngOnInit() {
