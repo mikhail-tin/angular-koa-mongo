@@ -21,7 +21,7 @@ export class HeroServise {
     }
 
     public async updateHero(hero: Hero) {
-        return await Hero.findByIdAndUpdate(hero._id, hero);
+        return await Hero.findByIdAndUpdate(hero._id, hero, { new: true });
     }
 
     public async deleteHero(id: string) {
