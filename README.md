@@ -14,6 +14,17 @@
 this project not done yet...
 ----------------------------
 ```
+### Run mongoDB
+#### Windows:
+``` 
+Open cmd and run mongod.exe 
+```
+#### Fedora Linux:
+```Start mongoDB service and after run mongoshell to test connection```
+```
+$ sudo service mongod start
+$ mongo
+``` 
 
 ## License
 MIT
