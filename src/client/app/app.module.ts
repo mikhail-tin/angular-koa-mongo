@@ -23,6 +23,7 @@ import { HeroActions } from './store/hero.actions';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { HeroEpics } from './services/hero.epic';
 import { InfoWidgetComponent } from './info-widget/info-widget.component';
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InfoWidgetComponent } from './info-widget/info-widget.component';
     NewHeroComponent,
     HeroSearchComponent,
     NotFoundComponent,
-    InfoWidgetComponent
+    InfoWidgetComponent,
+    LoadingIndicatorComponent
   ],
   imports: [
     BrowserModule,

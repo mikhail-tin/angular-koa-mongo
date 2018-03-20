@@ -1,0 +1,27 @@
+.pending-active {
+    display: block;
+    position: fixed;
+    opacity : 0.2;
+    background: linear-gradient(rgb(107, 107, 107), rgb(255, 255, 255));
+    z-index: 5000;
+    width: 900px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.pending-non-active {
+    display: none;
+}
+
+.loading-indicator-active{
+    display: block;
+    z-index: 5500;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 45%;
+}
+
+.loading-indicator-non-active{
+    display: none;
+}

@@ -1,0 +1,3 @@
+<div  [ngClass]="(pending$ | async)? 'pending-active':'pending-non-active'"></div>
+<img src="../assets/loading-indicator.gif" [ngClass]="(pending$ | async)? 'loading-indicator-active':'loading-indicator-non-active'">    
+
