@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux, select, WithSubStore, PathSelector} from '@angular-redux/store';
-import { IHeroState} from '../store/model';
+import { IHeroState, IGlobalState} from '../store/model';
 import { Router } from '@angular/router';
-import { HeroActions } from '../store/app.actions';
+import { HeroActions } from '../store/hero.actions';
 import { heroReducer } from '../store/heroReducer';
 
 @Component({
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private actions: HeroActions,
-    private ngRedux: NgRedux<IHeroState>,
+    private ngRedux: NgRedux<IGlobalState>,
     private router: Router) { }
 
   ngOnInit(): void { 
@@ -27,6 +27,6 @@ export class DashboardComponent implements OnInit {
    }
 
   gotoDetail(id: string): void {
-    this.router.navigate(['/detail', id]);
+     this.router.navigate(['/detail', id]);
   }
 }

@@ -4,7 +4,7 @@ import {Hero} from '../models/hero';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux, select} from '@angular-redux/store';
 import { IHeroState } from '../store/model';
-import { HeroActions } from '../store/app.actions'
+import { HeroActions } from '../store/hero.actions'
 
 @Component({
   selector: 'app-heroes',

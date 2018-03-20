@@ -1,6 +1,7 @@
 import { Hero } from '../models/hero'
+import { Action } from 'redux';
 
-export interface IGlobalStore {
+export interface IGlobalState {
     heroesState: IHeroState,
     routerReducer: any
 }
@@ -15,7 +16,7 @@ export interface IHeroState {
   filterHero: string
 }
 
-export const INITIAL_STATE: IGlobalStore = {
+export const INITIAL_STATE: IGlobalState = {
     heroesState: {
         pending: false,
         error: null,
@@ -26,4 +27,8 @@ export const INITIAL_STATE: IGlobalStore = {
         filterHero: ''
     },
     routerReducer: null
+}
+
+export interface AnyAction extends Action {
+    payload: any;
 }

@@ -11,7 +11,7 @@ import {
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
 import { NgRedux } from '@angular-redux/store';
-import { HeroActions } from '../store/app.actions';
+import { HeroActions } from '../store/hero.actions';
 import { IHeroState } from '../store/model';
 
 @Component({

@@ -3,7 +3,7 @@ import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store'
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { provideReduxForms } from '@angular-redux/form';
 import { createLogger } from 'redux-logger';
-import { IHeroState, IGlobalStore, INITIAL_STATE } from './model';
+import { IHeroState, IGlobalState, INITIAL_STATE } from './model';
 import { rootReducer } from './reducers';
 import { RootEpics } from './epics';
 import { createEpicMiddleware } from 'redux-observable';
@@ -16,7 +16,7 @@ import { HeroEpics } from '../services/hero.epic';
 })
 export class StoreModule {
   constructor(
-        public store: NgRedux<IGlobalStore>,
+        public store: NgRedux<IGlobalState>,
         ngReduxRouter: NgReduxRouter,
         private heroEpics: HeroEpics,
         rootEpics: RootEpics) {

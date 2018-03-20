@@ -1,8 +1,8 @@
 import { Action } from 'redux';
 import { Hero } from '../models/hero';
-import { AnyAction } from './app.actions';
+import { AnyAction } from './hero.actions';
 import { IHeroState, INITIAL_STATE } from './model';
-import { HeroActions } from './app.actions';
+import { HeroActions } from './hero.actions';
 
 
 export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, action: AnyAction): IHeroState {
@@ -68,7 +68,6 @@ export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, actio
         {pending: false}
       );
     
-
     case HeroActions.UPDATE_HERO: 
       return Object.assign({},
           state, 

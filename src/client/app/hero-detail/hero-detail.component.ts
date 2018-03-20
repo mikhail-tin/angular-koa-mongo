@@ -5,7 +5,7 @@ import { Location }  from '@angular/common';
 import { Hero } from '../models/hero';
 import { NgRedux, select, WithSubStore, PathSelector, ObservableStore} from '@angular-redux/store';
 import { IHeroState} from '../store/model';
-import { HeroActions} from '../store/app.actions'
+import { HeroActions} from '../store/hero.actions'
 import { Observable } from 'rxjs/Observable';
 import { heroReducer } from '../store/heroReducer';
 

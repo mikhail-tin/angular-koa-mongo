@@ -19,7 +19,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 // services
 import {HeroService} from './services/hero.service';
-import { HeroActions } from './store/app.actions';
+import { HeroActions } from './store/hero.actions';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { HeroEpics } from './services/hero.epic';
 import { InfoWidgetComponent } from './info-widget/info-widget.component';

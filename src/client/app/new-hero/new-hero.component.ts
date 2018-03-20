@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { NgRedux } from '@angular-redux/store';
 import { IHeroState } from '../store/model';
-import { HeroActions } from '../store/app.actions';
+import { HeroActions } from '../store/hero.actions';
 
 @Component({
   selector: 'app-new-hero',

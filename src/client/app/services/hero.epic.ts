@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionsObservable } from 'redux-observable';
-import { HeroActions } from '../store/app.actions';
+import { HeroActions } from '../store/hero.actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
