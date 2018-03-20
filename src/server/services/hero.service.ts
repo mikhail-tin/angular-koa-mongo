@@ -11,7 +11,7 @@ export class HeroServise {
     public async getHeroes(name?: string) {
         if(name){
             let regex = `${name}+`;
-            let result = await Hero.find({name: new RegExp(regex, "g")});
+            let result = await Hero.find({name: new RegExp(regex, "i")});
             return result;
         }
         return await Hero.find();

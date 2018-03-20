@@ -5,10 +5,15 @@
 <div>
   <ul class="heroes">
     <li *ngFor="let hero of heroes$ | async" (click)="onSelect(hero)"
-        [class.selected]="hero === (selectedHero$ | async)">
+        [class.selected]="hero === (selectedHero$ | async)"
+        class="tooltip" >
       <span class="badge">{{hero?._id?.substring(0,5)}}</span>
       <span>{{hero?.name}}</span>
       <button class="delete" (click)="delete(hero); $event.stopPropagation()">x</button>
+      <div class="tooltiptext">
+        <p>Created: {{(hero?.createdAt).substring(0,10)}}</p> 
+        <p>Updated: {{(hero?.updatedAt).substring(0,10)}}</p> 
+      </div>
     </li>
   </ul>
 

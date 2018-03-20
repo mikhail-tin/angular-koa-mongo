@@ -50,6 +50,45 @@
   background: -ms-linear-gradient(left, #607D8B,#BBD8DC 100%);
   background: linear-gradient(to right, #607D8B, #BBD8DC 100%);
 }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 1px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 80%;
+  margin-left: -50px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+
 button {
   font-family: Arial;
   background-color: #eee;
