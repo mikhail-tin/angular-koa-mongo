@@ -4,7 +4,7 @@ import {Hero} from '../models/hero';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux, select} from '@angular-redux/store';
 import { IHeroState } from '../store/model';
-import { HeroActions } from '../store/hero.actions'
+import { HeroActions } from '../store/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -12,7 +12,7 @@ import { HeroActions } from '../store/hero.actions'
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  
+
   @select(['heroesState', 'heroes']) heroes$: Observable<Hero[]>;
   @select(['heroesState', 'selectedHero']) selectedHero$: Observable<Hero>;
 
@@ -21,7 +21,7 @@ export class HeroesComponent implements OnInit {
     private actions: HeroActions,
     private router: Router) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.actions.getHeroes();
    }
 

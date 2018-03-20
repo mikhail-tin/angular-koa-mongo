@@ -9,7 +9,7 @@ import { heroReducer } from '../store/heroReducer';
 
 @Component({
   moduleId: module.id.toString(),
-  selector: 'my-dashboard',
+  selector: 'app-my-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css' ]
 })
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     private ngRedux: NgRedux<IGlobalState>,
     private router: Router) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.actions.getHeroes();
    }
 

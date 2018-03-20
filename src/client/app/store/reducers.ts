@@ -7,4 +7,4 @@ import { IHeroState, IGlobalState } from './model';
 export const rootReducer = combineReducers<IGlobalState>({
     heroesState: heroReducer,
     routerReducer
-  });
+});

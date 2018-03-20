@@ -30,7 +30,7 @@ export class HeroActions {
   static UPDATE_HERO = 'UPDATE_HERO';
   static UPDATE_HERO_SUCCESS = 'UPDATE_HERO_SUCCESS';
   static UPDATE_HERO_ERROR = 'UPDATE_HERO_ERROR';
-  
+
   static SELECT_HERO = 'SELECT_HERO';
 
   constructor(private ngRedux: NgRedux<IHeroState>) {}
@@ -46,5 +46,4 @@ export class HeroActions {
   updateHero = (hero: Hero) =>  this.ngRedux.dispatch({ type: HeroActions.UPDATE_HERO, payload: hero });
 
   select = (hero: Hero) =>  this.ngRedux.dispatch({ type: HeroActions.SELECT_HERO, payload: hero });
-  
 }

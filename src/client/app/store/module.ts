@@ -20,13 +20,12 @@ export class StoreModule {
         ngReduxRouter: NgReduxRouter,
         private heroEpics: HeroEpics,
         rootEpics: RootEpics) {
-    
     const middleware = [
         createEpicMiddleware(this.heroEpics.getHero),
         createEpicMiddleware(this.heroEpics.addHero),
         createEpicMiddleware(this.heroEpics.deleteHero),
         createEpicMiddleware(this.heroEpics.updateHero),
-        createLogger()
+        // createLogger()
     ];
 
     store.configureStore(rootReducer, INITIAL_STATE, middleware);
