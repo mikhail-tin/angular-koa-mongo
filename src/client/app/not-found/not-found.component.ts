@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { select, NgRedux } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IGlobalState } from '../store/model';
 
 @Component({
   selector: 'app-not-found',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  @select(['heroesState', 'error']) error$: Observable<any[]>;
+  
+  constructor(private ngRedux: NgRedux<IGlobalState>) { }
 
   ngOnInit() {
   }

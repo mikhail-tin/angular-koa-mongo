@@ -13,10 +13,7 @@ export default new Router()
   .post('/api/heroes', addHero)
 ;
 
-const timeout = ms => new Promise(res => setTimeout(res, ms))
-
 async function getHeroes(ctx: Context) {
-  // await timeout(2000)
   ctx.body = JSON.stringify(await heroService.getHeroes(ctx.request.query.name));
 }
 

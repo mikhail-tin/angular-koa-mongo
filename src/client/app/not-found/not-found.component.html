@@ -1,2 +1,12 @@
-<h1 class="center">404</h1>
-<h2 class="center">Page not found.</h2>
+<div *ngIf="(error$ | async);then content else other_content"></div>
+
+<ng-template #content>
+    <h1 class="center">{{(error$ | async).status}}</h1>
+    <h2 class="center">{{(error$ | async).statusText}}</h2>
+</ng-template>
+
+<ng-template #other_content>
+    <h1 class="center">404</h1>
+    <h2 class="center">Page not found.</h2>
+</ng-template>
+

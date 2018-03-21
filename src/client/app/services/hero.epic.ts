@@ -6,7 +6,11 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mapTo';
 import { HeroService } from './hero.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Action } from 'rxjs/scheduler/Action';
 
 const BASE_URL = '/api';
 
@@ -15,12 +19,21 @@ export class HeroEpics {
 
   constructor(private heroService: HeroService) {}
 
-  getHero = (action$: ActionsObservable<any>) => {
+ /* errorHandling = (action$: ActionsObservable<any>) => {
+    return action$.ofType(HeroActions.GET_HEROES_ERROR)
+    .mergeMap(({payload}) => {
+        return sayServerAboutError()
+          .map(result => ({ type: '', payload: result }))
+          .catch(error => Observable.of({ type: '', payload: error}));
+        });
+  } */
+
+  getHeroes = (action$: ActionsObservable<any>) => {
     return action$.ofType(HeroActions.GET_HEROES)
       .mergeMap(({payload}) => {
         return this.heroService.getHeroes()
           .map(result => ({ type: HeroActions.GET_HEROES_SUCCESS, payload: result }))
-          .catch(error => Observable.of({ type: HeroActions.GET_HEROES_ERROR }));
+          .catch(error => Observable.of({ type: HeroActions.GET_HEROES_ERROR, payload: error}));
         });
   }
 

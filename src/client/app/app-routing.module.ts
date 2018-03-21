@@ -10,12 +10,13 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'heroes', component: HeroesComponent},
   {path: 'detail/:id', component: HeroDetailComponent},
+  {path: 'error', component: NotFoundComponent},
   {path: '**',  component: NotFoundComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot( routes, /*{ enableTracing: true } /* <-- debugging purposes only*/ )
+    RouterModule.forRoot( routes, /*{ enableTracing: true }*/ )
   ],
   exports: [RouterModule],
 })

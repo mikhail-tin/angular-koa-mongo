@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger';
 import { IHeroState, IGlobalState, INITIAL_STATE } from './model';
 import { rootReducer } from './reducers';
 import { RootEpics } from './epics';
-import { createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { HeroEpics } from '../services/hero.epic';
 
 
@@ -21,10 +21,11 @@ export class StoreModule {
         private heroEpics: HeroEpics,
         rootEpics: RootEpics) {
     const middleware = [
-        createEpicMiddleware(this.heroEpics.getHero),
+        createEpicMiddleware(this.heroEpics.getHeroes),
         createEpicMiddleware(this.heroEpics.addHero),
         createEpicMiddleware(this.heroEpics.deleteHero),
         createEpicMiddleware(this.heroEpics.updateHero),
+        // createEpicMiddleware(this.heroEpics.errorHandling),
         // createLogger()
     ];
 
