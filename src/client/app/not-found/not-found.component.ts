@@ -14,7 +14,6 @@ export class NotFoundComponent implements OnInit {
 
   constructor(private ngRedux: NgRedux<IGlobalState>) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

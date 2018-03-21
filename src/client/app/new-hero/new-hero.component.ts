@@ -12,9 +12,7 @@ export class NewHeroComponent implements OnInit {
 
   heroName = '';
 
-  constructor(
-    private ngRedux: NgRedux<IHeroState>,
-    private actions: HeroActions) { }
+  constructor(private actions: HeroActions) { }
 
   ngOnInit() {
   }

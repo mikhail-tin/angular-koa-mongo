@@ -14,7 +14,8 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
+// Then we find all the tests.loading-indicator.component.spec
+let context = require.context('./', true, /\.spec\.ts$/);
+context = require.context('./', true, /hero.detail.component.spec.ts$/);
 // And load the modules.
 context.keys().map(context);

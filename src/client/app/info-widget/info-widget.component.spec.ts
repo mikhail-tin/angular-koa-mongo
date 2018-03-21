@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InfoWidgetComponent } from './info-widget.component';
+import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
+import { HeroActions } from '../store/hero.actions';
 
 describe('InfoWidgetComponent', () => {
   let component: InfoWidgetComponent;
@@ -8,7 +10,9 @@ describe('InfoWidgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfoWidgetComponent ]
+      declarations: [ InfoWidgetComponent ],
+      imports: [NgReduxTestingModule],
+      providers: [HeroActions]
     })
     .compileComponents();
   }));

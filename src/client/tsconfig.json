@@ -16,7 +16,8 @@
       "dom"
     ],
     "types": [
-      "node"
+      "node",
+      "jasmine"
     ],
     "allowJs": true
   }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DashboardComponent } from './dashboard.component';
+import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/lib/testing';
+import { HeroActions } from '../store/hero.actions';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +9,9 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ DashboardComponent ],
+      imports: [NgReduxTestingModule],
+      providers: [HeroActions]
     })
     .compileComponents();
   }));

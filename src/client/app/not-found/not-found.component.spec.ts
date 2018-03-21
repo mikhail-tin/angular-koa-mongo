@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
+import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
+import { HeroActions } from '../store/hero.actions';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -8,7 +10,9 @@ describe('NotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotFoundComponent ]
+      declarations: [ NotFoundComponent ],
+      imports: [NgReduxTestingModule],
+      providers: [HeroActions],
     })
     .compileComponents();
   }));
