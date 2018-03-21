@@ -11,7 +11,7 @@ import { IGlobalState } from '../store/model';
 export class NotFoundComponent implements OnInit {
 
   @select(['heroesState', 'error']) error$: Observable<any[]>;
-  
+
   constructor(private ngRedux: NgRedux<IGlobalState>) { }
 
   ngOnInit() {

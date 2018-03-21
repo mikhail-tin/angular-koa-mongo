@@ -3,14 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "ng lint",
     "start-client-dev": "ng serve",
     "start-server-dev": "node ./dist/server/server.js",
-    "build-dev": "ng build --dev | tsc -p ./",
-    "build-prod": "ng build --prod | tsc -p ./",
     "build-client-dev": "ng build --dev",
-    "build-client-prod": "ng build --prod",
     "build-server-dev": "tsc -p ./",
+    "build-client-prod": "ng build --prod",
     "build-server-prod": "tsc -p ./"
   },
   "private": true,

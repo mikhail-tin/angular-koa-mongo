@@ -21,7 +21,7 @@ export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, actio
     case HeroActions.GET_HEROES_ERROR:
       return Object.assign({}, state,
         {heroes: []},
-        {error: action.payload},// 'Heroes was not fetched'},
+        {error: action.payload},
         {pending: false}
       );
 
@@ -38,7 +38,7 @@ export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, actio
       );
     case HeroActions.ADD_HERO_ERROR:
       return Object.assign({}, state,
-        {error: 'Hero was not added'},
+        {error: action.payload},
         {pending: false}
       );
 
@@ -56,7 +56,7 @@ export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, actio
     case HeroActions.DELETE_HERO_ERROR:
       return Object.assign({}, state,
         {heroes: [...heroes, action.payload]},
-        {error: 'Hero was not deleted'},
+        {error: action.payload},
         {pending: false}
       );
 
@@ -76,7 +76,7 @@ export function heroReducer(state: IHeroState = INITIAL_STATE.heroesState, actio
         return Object.assign({}, state,
           {heroes: [...heroes, action.payload]},
           {selectedHero: null},
-          {error: 'Hero was not updated'},
+          {error: action.payload},
           {pending: false}
         );
 

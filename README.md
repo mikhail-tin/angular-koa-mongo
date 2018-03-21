@@ -30,6 +30,13 @@ Create the following folder: C:\data\db
  mongo
 ```
 
+### Commands
+
+* ```npm run start-client-dev``` - Webpack with hot reloading on localhost:4200
+* ```npm run start-server-dev``` - Run server on localhost:3000 (or F5 in VS Code with Debug). Don't forget run ```build-client-dev``` first.
+* ```npm run build-client-dev``` - Build client in target directory
+* ```npm run build-server-dev``` - Build server in target directory
+
 ## License
 
 MIT

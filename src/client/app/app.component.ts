@@ -9,19 +9,19 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
 
   @select(['heroesState', 'error']) error$: Observable<any[]>;
-  
-  constructor(private ngRedux: NgRedux<IGlobalState>,private router: Router) { }
+
+  constructor(private ngRedux: NgRedux<IGlobalState>, private router: Router) { }
 
   ngOnInit() {
     this.error$.subscribe(val => {
-      if(val) {
-        this.router.navigate(['/error'])
+      if (val) {
+        this.router.navigate(['/error']);
       }
-    })
+    });
   }
 
 }
