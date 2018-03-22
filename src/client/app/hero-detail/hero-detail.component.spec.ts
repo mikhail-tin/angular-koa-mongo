@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeroDetailComponent } from './hero-detail.component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/lib/testing';
 import { HeroActions } from '../store/hero.actions';
 import { FormsModule } from '@angular/forms';
-
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Hero } from '../models/hero';
@@ -19,7 +17,7 @@ export function mockedRedux(): RootStore<any> {
   const state: IGlobalState = {
     heroesState: {
         heroes: [{_id: '12345', name: 'Hero1'},{_id: '23456', name: 'Hero2'},{_id: '345678', name: 'Hero3'}],
-        pending: false,error: null, newHero: null, selectedHero: null,hero: null,filterHero: '' 
+        pending: false,error: null, newHero: null, selectedHero: {_id: '23456', name: 'Hero2'},hero: null,filterHero: '' 
     },
     routerReducer: null
   }
@@ -31,36 +29,28 @@ export function mockedRedux(): RootStore<any> {
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
   let fixture: ComponentFixture<HeroDetailComponent>;
-  let subStore = { 
-    getState: () => { 
-      return {  heroes: [{_id: '123', name: 'Hero1'},{_id: '234', name: 'Hero2'},{_id: '345', name: 'Hero3'}] };
-    }
-  };
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeroDetailComponent ],
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
       providers: [HeroActions, MockNgRedux, 
-        {provide: ActivatedRoute, useValue: {params: Observable.of({id: '123'}) }},
+        {provide: ActivatedRoute, useValue: {params: Observable.of({id: '12345'}) }},
         {provide: NgRedux, useValue: mockedRedux()}
     ]
     })
     .compileComponents();
-
-    spyOn(MockNgRedux.getInstance(), 'configureSubStore').and.returnValue(subStore);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeroDetailComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

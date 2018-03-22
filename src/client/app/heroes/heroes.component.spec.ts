@@ -32,7 +32,7 @@ describe('HeroesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeroesComponent, NewHeroComponent, InfoWidgetComponent ],
-      imports: [NgReduxTestingModule,FormsModule, RouterModule, RouterTestingModule],
+      imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
       providers: [HeroActions, {provide: NgRedux, useValue: mockedRedux()}]
     })
     .compileComponents();
