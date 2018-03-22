@@ -2,7 +2,7 @@ import { IGlobalState } from '../store/model';
 import { RootStore } from '@angular-redux/store/lib/src/components/root-store';
 import { NgZone } from '@angular/core';
 
-const state: IGlobalState = {
+const defaultState: IGlobalState = {
     heroesState: {
         heroes: [
             {_id: '12345', name: 'Hero1'},
@@ -19,13 +19,18 @@ const state: IGlobalState = {
     routerReducer: null
 };
 
-function mockedRedux(): RootStore<any> {
+let extState = {};
+
+function mockedRedux(state: any = defaultState): RootStore<any> {
+    let initState = Object.assign({}, defaultState, state);
+    let extState = initState;
     const result = new RootStore(new NgZone({}));
-    result.configureStore((s, a) => s, state);
+    result.configureStore((s, a) => {return Object.assign({},s,a.payload);}, initState);
     return result;
 }
 
 export {
-    state,
+    extState,
+    defaultState,
     mockedRedux
 };

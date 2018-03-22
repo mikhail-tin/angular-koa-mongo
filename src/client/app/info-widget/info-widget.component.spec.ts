@@ -1,15 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// components
 import { InfoWidgetComponent } from './info-widget.component';
-import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
-import { HeroActions } from '../store/hero.actions';
-import { RootStore } from '@angular-redux/store/lib/src/components/root-store';
-import { NgZone } from '@angular/core';
-import { IGlobalState } from '../store/model';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+// necessary staff
 import { NgRedux } from '@angular-redux/store';
 import { mockedRedux } from '../mocks';
+import { FormsModule, RouterModule, RouterTestingModule, NgReduxTestingModule } from '../mocks/modulesImport';
+import { HeroActions, HeroService, HttpClient, HttpHandler } from '../mocks/providersImport';
 
 describe('InfoWidgetComponent', () => {
   let component: InfoWidgetComponent;
