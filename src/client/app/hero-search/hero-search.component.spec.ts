@@ -11,8 +11,10 @@ import { HeroActions, HeroService, HttpClient, HttpHandler } from '../mocks/prov
 describe('HeroSearchComponent', () => {
   let component: HeroSearchComponent;
   let fixture: ComponentFixture<HeroSearchComponent>;
+  let mockedNgRedux;
 
   beforeEach(async(() => {
+    mockedNgRedux = mockedRedux();
     TestBed.configureTestingModule({
       declarations: [ HeroSearchComponent ],
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],

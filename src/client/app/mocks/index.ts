@@ -19,18 +19,14 @@ const defaultState: IGlobalState = {
     routerReducer: null
 };
 
-let extState = {};
-
 function mockedRedux(state: any = defaultState): RootStore<any> {
     let initState = Object.assign({}, defaultState, state);
-    let extState = initState;
     const result = new RootStore(new NgZone({}));
-    result.configureStore((s, a) => {return Object.assign({},s,a.payload);}, initState);
+    result.configureStore((s, a) => { return Object.assign({}, s, a.payload); }, initState);
     return result;
 }
 
 export {
-    extState,
     defaultState,
     mockedRedux
 };

@@ -10,12 +10,14 @@ import { HeroActions, HeroService, HttpClient, HttpHandler } from '../mocks/prov
 describe('InfoWidgetComponent', () => {
   let component: InfoWidgetComponent;
   let fixture: ComponentFixture<InfoWidgetComponent>;
+  let mockedNgRedux;
 
   beforeEach(async(() => {
+    mockedNgRedux = mockedRedux({heroesState: {pending: true}});
     TestBed.configureTestingModule({
       declarations: [ InfoWidgetComponent ],
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
-      providers: [HeroActions, {provide: NgRedux, useValue: mockedRedux()}]
+      providers: [HeroActions, {provide: NgRedux, useValue: mockedNgRedux}]
     })
     .compileComponents();
   }));

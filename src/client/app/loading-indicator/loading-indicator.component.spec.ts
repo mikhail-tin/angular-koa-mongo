@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoadingIndicatorComponent } from './loading-indicator.component';
 // necessary staff
 import { NgRedux } from '@angular-redux/store';
-import { mockedRedux, extState } from '../mocks';
+import { mockedRedux } from '../mocks';
 import { FormsModule, RouterModule, RouterTestingModule, NgReduxTestingModule } from '../mocks/modulesImport';
 import { HeroActions, HeroService, HttpClient, HttpHandler } from '../mocks/providersImport';
 import { Observable } from 'rxjs/Observable';
@@ -11,9 +11,10 @@ import { Observable } from 'rxjs/Observable';
 describe('LoadingIndicatorComponent(pending)', () => {
   let component: LoadingIndicatorComponent;
   let fixture: ComponentFixture<LoadingIndicatorComponent>;
-  let mockedNgRedux = mockedRedux({heroesState: {pending: true}})
+  let mockedNgRedux; 
 
   beforeEach(async(() => {
+    mockedNgRedux = mockedRedux({heroesState: {pending: true}});
     TestBed.configureTestingModule({
       declarations: [ LoadingIndicatorComponent ],
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
@@ -33,16 +34,16 @@ describe('LoadingIndicatorComponent(pending)', () => {
   });
 
   it('indicator is visible', () => {
-    mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {pending: true}}})
+    mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {pending: true}}});
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('img')).toBeTruthy();
   });
 
   it('indicator is non visible', () => {
-    mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {pending: false}}})
+    mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {pending: false}}});
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('img')).toBeFalsy()
+    expect(compiled.querySelector('img')).toBeFalsy();
   });
 });

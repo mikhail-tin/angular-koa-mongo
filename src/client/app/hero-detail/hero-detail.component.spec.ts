@@ -13,14 +13,16 @@ import 'rxjs/add/observable/of';
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
   let fixture: ComponentFixture<HeroDetailComponent>;
+  let mockedNgRedux;
 
   beforeEach(async(() => {
+    mockedNgRedux = mockedRedux();
     TestBed.configureTestingModule({
       declarations: [ HeroDetailComponent ],
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
       providers: [HeroActions,
         {provide: ActivatedRoute, useValue: {params: Observable.of({id: '12345'}) }},
-        {provide: NgRedux, useValue: mockedRedux()}
+        {provide: NgRedux, useValue: mockedNgRedux}
       ]
     })
     .compileComponents();

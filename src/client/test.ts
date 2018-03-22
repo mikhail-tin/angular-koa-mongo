@@ -16,6 +16,6 @@ getTestBed().initTestEnvironment(
 );
 
 const context = require.context('./', true, /\.spec\.ts$/);
-// context = require.context('./', true, /hero-search.component.spec.ts$/);
+// const context = require.context('./', true, /heroes.component.spec.ts$/);
 // And load the modules.
 context.keys().map(context);

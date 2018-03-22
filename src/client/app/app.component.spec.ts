@@ -11,13 +11,14 @@ import { FormsModule, RouterModule, RouterTestingModule, NgReduxTestingModule } 
 import { HeroActions, HeroService, HttpClient, HttpHandler } from './mocks/providersImport';
 
 describe('AppComponent', () => {
+  let mockedNgRedux;
+
   beforeEach(async(() => {
+    mockedNgRedux = mockedRedux({heroesState: {pending: true}});
     TestBed.configureTestingModule({
       imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
       declarations: [AppComponent, LoadingIndicatorComponent, NotFoundComponent],
-      providers: [HeroActions, {provide: NgRedux, useValue: mockedRedux()}]
-
-
+      providers: [HeroActions, {provide: NgRedux, useValue: mockedNgRedux}]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
