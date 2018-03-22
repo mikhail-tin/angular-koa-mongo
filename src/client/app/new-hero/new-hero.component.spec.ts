@@ -7,21 +7,13 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormsModule } from '@angular/forms';
 
-@Component({
-  selector: 'new-hero',
-  template: 'Mock New Hero',
-})
-class MockNewHeroComponent {
-  @Input() heroName = 'new hero';
-};
-
 describe('NewHeroComponent', () => {
   let component: NewHeroComponent;
   let fixture: ComponentFixture<NewHeroComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewHeroComponent, MockNewHeroComponent ],
+      declarations: [ NewHeroComponent ],
       imports: [NgReduxTestingModule, FormsModule],
       providers: [HeroActions],
     })
@@ -33,7 +25,7 @@ describe('NewHeroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewHeroComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {
