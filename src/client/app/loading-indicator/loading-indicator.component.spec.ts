@@ -2,6 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoadingIndicatorComponent } from './loading-indicator.component';
 import { NgReduxTestingModule, MockNgRedux } from '@angular-redux/store/testing';
 import { HeroActions } from '../store/hero.actions';
+import { mockedRedux } from '../mocks';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgRedux } from '@angular-redux/store';
 
 describe('LoadingIndicatorComponent', () => {
   let component: LoadingIndicatorComponent;
@@ -10,8 +15,8 @@ describe('LoadingIndicatorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoadingIndicatorComponent ],
-      imports: [NgReduxTestingModule],
-      providers: [HeroActions],
+      imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
+      providers: [HeroActions, {provide: NgRedux, useValue: mockedRedux()}]
     })
     .compileComponents();
   }));
@@ -19,10 +24,10 @@ describe('LoadingIndicatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoadingIndicatorComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

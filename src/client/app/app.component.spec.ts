@@ -1,29 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+// components
 import { AppComponent } from './app.component';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { RouterModule } from '@angular/router';
-import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
-import { FormsModule } from '@angular/forms';
-import { HeroActions } from './store/hero.actions';
+// necessary staff
 import { NgRedux } from '@angular-redux/store';
-import { RootStore } from '@angular-redux/store/lib/src/components/root-store';
-import { NgZone } from '@angular/core';
-import { IGlobalState } from './store/model';
-
-export function mockedRedux(): RootStore<any> {
-  const state: IGlobalState = {
-    heroesState: {
-        heroes: [{_id: '12345', name: 'Hero1'},{_id: '23456', name: 'Hero2'},{_id: '345678', name: 'Hero3'}],
-        pending: false,error: null, newHero: null, selectedHero: null,hero: null,filterHero: '' 
-    },
-    routerReducer: null
-  }
-  let result = new RootStore(new NgZone({}))
-  result.configureStore((s,a) => s, state);
-  return result;
-}
+import { ActivatedRoute } from '@angular/router';
+import { mockedRedux } from './mocks';
+import { FormsModule, RouterModule, RouterTestingModule, NgReduxTestingModule } from './mocks/modulesImport';
+import { HeroActions, HeroService, HttpClient, HttpHandler } from './mocks/providersImport';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

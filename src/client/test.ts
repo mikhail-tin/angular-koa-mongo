@@ -15,7 +15,7 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 
-let context = require.context('./', true, /\.spec\.ts$/);
+const context = require.context('./', true, /\.spec\.ts$/);
 // context = require.context('./', true, /hero-search.component.spec.ts$/);
 // And load the modules.
 context.keys().map(context);

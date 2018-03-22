@@ -1,8 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NotFoundComponent } from './not-found.component';
 import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
 import { HeroActions } from '../store/hero.actions';
+import { mockedRedux } from '../mocks';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgRedux } from '@angular-redux/store';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -11,8 +15,8 @@ describe('NotFoundComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NotFoundComponent ],
-      imports: [NgReduxTestingModule],
-      providers: [HeroActions],
+      imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
+      providers: [HeroActions, {provide: NgRedux, useValue: mockedRedux()}]
     })
     .compileComponents();
   }));
@@ -20,10 +24,10 @@ describe('NotFoundComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

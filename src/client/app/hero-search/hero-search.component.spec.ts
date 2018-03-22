@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// components
 import { HeroSearchComponent } from './hero-search.component';
-import { NgReduxTestingModule } from '@angular-redux/store/lib/testing';
-import { HeroActions } from '../store/hero.actions';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HeroService } from '../services/hero.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+// necessary staff
+import { NgRedux } from '@angular-redux/store';
+import { ActivatedRoute } from '@angular/router';
+import { mockedRedux } from '../mocks';
+import { FormsModule, RouterModule, RouterTestingModule, NgReduxTestingModule } from '../mocks/modulesImport';
+import { HeroActions, HeroService, HttpClient, HttpHandler } from '../mocks/providersImport';
 
 describe('HeroSearchComponent', () => {
   let component: HeroSearchComponent;
@@ -15,7 +15,7 @@ describe('HeroSearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeroSearchComponent ],
-      imports: [NgReduxTestingModule,FormsModule, RouterModule, RouterTestingModule],
+      imports: [NgReduxTestingModule, FormsModule, RouterModule, RouterTestingModule],
       providers: [HeroActions, HeroService, HttpClient, HttpHandler]
     })
     .compileComponents();
