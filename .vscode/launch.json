@@ -7,21 +7,19 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Tests",
-            "program": "${workspaceFolder}/node_modules/karma/bin/karma",
-            "args": [
-                "start", "./karma.conf.js"
-            ]
+            "name": "Run Server",
+            "preLaunchTask": "npm: build-server-dev",
+            "program": "${workspaceFolder}/dist/server/server.js",
+            "sourceMaps": true,
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program Dev",
-            "preLaunchTask": "npm: build-server-dev",
-            "program": "${workspaceFolder}/dist/server/server.js",
-            "sourceMaps": true,
+            "name": "Run Tests",
+            "program": "${workspaceFolder}/node_modules/karma/bin/karma",
+            "args": [
+                "start", "./karma.conf.js"
+            ]
         }
-
-
     ]
 }
