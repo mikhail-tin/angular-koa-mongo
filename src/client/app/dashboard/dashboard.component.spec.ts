@@ -39,17 +39,17 @@ describe('DashboardComponent', () => {
   });
 
   it('number of heroes always is 5', () => {
-    let heroes: Hero[] = [
-      {_id: '158138167465', name: "First Hero"},
-      {_id: '563581316745', name: "Second Hero"},
-      {_id: '158138167465', name: "Third Hero"},
-      {_id: '563581316745', name: "Fourth Hero"},
-      {_id: '158138167465', name: "Fifth Hero"},
-      {_id: '563581316745', name: "Sixth Hero"}
+    const heroes: Hero[] = [
+      {_id: '158138167465', name: 'First Hero'},
+      {_id: '563581316745', name: 'Second Hero'},
+      {_id: '158138167465', name: 'Third Hero'},
+      {_id: '563581316745', name: 'Fourth Hero'},
+      {_id: '158138167465', name: 'Fifth Hero'},
+      {_id: '563581316745', name: 'Sixth Hero'}
     ];
     mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {heroes: heroes}}});
     fixture.detectChanges();
     const count = fixture.debugElement.nativeElement.querySelectorAll('.hero').length;
-    expect(count).toBe(5)
+    expect(count).toBe(5);
   });
 });

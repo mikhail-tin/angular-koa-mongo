@@ -38,13 +38,13 @@ describe('HeroesComponent', () => {
 
   it('number of heroes', () => {
     let heroes: Hero[] = [
-      {_id: '158138167465', name: "First Hero"},
-      {_id: '563581316745', name: "Second Hero"}
+      {_id: '158138167465', name: 'First Hero'},
+      {_id: '563581316745', name: 'Second Hero'}
     ];
     mockedNgRedux.dispatch({type: 'CHANGE', payload: {heroesState: {heroes: heroes}}});
     fixture.detectChanges();
     const count = fixture.debugElement.nativeElement.querySelectorAll('li').length;
-    expect(count).toBe(2)
+    expect(count).toBe(2);
   });
 
 });

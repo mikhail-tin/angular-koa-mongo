@@ -1,27 +1,19 @@
-<!--<div class="new-hero">
-  <label>Hero name:</label> 
-  <input [(ngModel)]="heroName" />
-  <button (click)="add(heroName)"> Add </button>
-</div>-->
-
 <div class="container" class="new-hero">
-  <div [hidden]="submitted">
-    <h1>New hero:</h1>
-    <form [formGroup]="form" (submit)="onSubmit()" #heroForm="ngForm">
-      
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" formControlName="name">
-        <div class="error" *ngIf="isControlInvalid('name')">Name is required</div>
-      </div>
+  <h1>New hero:</h1>
+  <form [formGroup]="form" (submit)="onSubmit()" #heroForm="ngForm">
+    
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div class="error" *ngIf="isControlInvalid('name')">Name is required</div>
+    </div>
 
-      <div class="form-group">
-        <label for="age">Age:</label>
-        <input type="number" class="form-control" id="age" formControlName="age">
-        <div class="error" *ngIf="isControlInvalid('age')">too young</div>
-      </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" class="form-control" id="age" formControlName="age">
+      <div class="error" *ngIf="isControlInvalid('age')">too young</div>
+    </div>
 
-      <button type="submit">Add</button>
-    </form>
-  </div>
+    <button type="submit">Add</button>
+  </form>
 </div>

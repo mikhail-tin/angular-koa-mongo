@@ -15,8 +15,7 @@ export class NewHeroComponent implements OnInit {
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private actions: HeroActions) { 
-
+    private actions: HeroActions) {
     }
 
   ngOnInit() {

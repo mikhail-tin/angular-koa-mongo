@@ -20,9 +20,9 @@ const defaultState: IGlobalState = {
 };
 
 function mockedRedux(state: any = defaultState): RootStore<any> {
-    let initState = Object.assign({}, defaultState, state);
+    const initState = Object.assign({}, defaultState, state);
     const result = new RootStore(new NgZone({}));
-    result.configureStore((s, a) => { return Object.assign({}, s, a.payload); }, initState);
+    result.configureStore((s, a) => Object.assign({}, s, a.payload), initState);
     return result;
 }
 
