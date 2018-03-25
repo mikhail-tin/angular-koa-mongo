@@ -37,7 +37,7 @@ describe('HeroesComponent', () => {
   });
 
   it('number of heroes', () => {
-    let heroes: Hero[] = [
+    const heroes: Hero[] = [
       {_id: '158138167465', name: 'First Hero'},
       {_id: '563581316745', name: 'Second Hero'}
     ];

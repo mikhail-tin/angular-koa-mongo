@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 describe('LoadingIndicatorComponent(pending)', () => {
   let component: LoadingIndicatorComponent;
   let fixture: ComponentFixture<LoadingIndicatorComponent>;
-  let mockedNgRedux; 
+  let mockedNgRedux;
 
   beforeEach(async(() => {
     mockedNgRedux = mockedRedux({heroesState: {pending: true}});
