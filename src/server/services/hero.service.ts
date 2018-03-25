@@ -21,8 +21,8 @@ export class HeroServise {
         return await Hero.findById(id);
     }
 
-    public async addHero(name: string) {
-        return await new Hero({name: name}).save();
+    public async addHero(hero:Hero) {
+        return await new Hero(hero).save();
     }
 
     public async updateHero(hero: Hero) {

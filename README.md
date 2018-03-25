@@ -19,13 +19,12 @@
 Create the following folder: C:\data\db
 
 ```cmd
-> cd C:\Program Files\MongoDB\Server\3.6\bin
-> mongod.exe
+> cd C:\Program Files\MongoDB\Server\3.6\bin && mongod.exe
 ```
 
 #### Fedora Linux
 
-```bash
+```bashr
  sudo service mongod start
  mongo
 ```

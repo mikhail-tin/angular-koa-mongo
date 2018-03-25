@@ -5,14 +5,14 @@ import { NgZone } from '@angular/core';
 const defaultState: IGlobalState = {
     heroesState: {
         heroes: [
-            {_id: '12345', name: 'Hero1'},
-            {_id: '23456', name: 'Hero2'},
-            {_id: '345678', name: 'Hero3'}
+            {_id: '12345', name: 'Hero1', age: 20},
+            {_id: '23456', name: 'Hero2', age: 30},
+            {_id: '345678', name: 'Hero3', age: 40}
         ],
         pending: false,
         error: null,
         newHero: null,
-        selectedHero: {_id: '23456', name: 'Hero2'},
+        selectedHero: {_id: '23456', name: 'Hero2', age: 30},
         hero: null,
         filterHero: ''
     },

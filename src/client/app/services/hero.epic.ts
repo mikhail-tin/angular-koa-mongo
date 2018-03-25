@@ -40,7 +40,7 @@ export class HeroEpics {
   addHero = (action$: ActionsObservable<any>) => {
     return action$.ofType(HeroActions.ADD_HERO)
       .mergeMap(({payload}) => {
-        return this.heroService.addHero(payload.name)
+        return this.heroService.addHero(payload)
           .map(result => ({ type: HeroActions.ADD_HERO_SUCCESS, payload: result }))
           .catch(error => Observable.of({ type: HeroActions.ADD_HERO_ERROR }));
         });

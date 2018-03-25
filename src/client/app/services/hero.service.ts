@@ -19,25 +19,25 @@ export class HeroService {
     this.api = environment.heroesApi;
    }
 
-  getHeroes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.host}${this.api}`);
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(`${this.host}${this.api}`);
   }
 
-  getHero(_id: number): Observable<any> {
-    return this.http.get(`${this.host}${this.api}/${_id}`);
+  getHero(_id: number): Observable<Hero> {
+    return this.http.get<Hero>(`${this.host}${this.api}/${_id}`);
   }
 
-  searchHeroes(term: string): Observable<any[]> {
+  searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) { return of([]); }
-    return this.http.get<any[]>(`${this.host}${this.api}/?name=${term}`);
+    return this.http.get<Hero[]>(`${this.host}${this.api}/?name=${term}`);
   }
 
-  addHero(name: string): Observable<any> {
-    return this.http.post(`${this.host}${this.api}`, name);
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(`${this.host}${this.api}`, hero);
   }
 
-  updateHero(hero: Hero): Observable<any> {
-    return this.http.put(`${this.host}${this.api}`, hero);
+  updateHero(hero: Hero): Observable<Hero> {
+    return this.http.put<Hero>(`${this.host}${this.api}`, hero);
   }
 
   deleteHero(hero: Hero): Observable<any> {
